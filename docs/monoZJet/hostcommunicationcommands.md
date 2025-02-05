@@ -1,14 +1,22 @@
 ---
-title: Host communication commands
+title: MZコマンド
 sidebar_position: 3
 ---
 import CodeBlock from '@theme/CodeBlock';  
 import MDXComponents from '@theme-original/MDXComponents';
   
-# MZCommands
+# MZコマンド
 
-### Module Start
-This command is used to initialize monoZ:Jet module and check SIM Status, Configure Band and OrgID, attach to cellular network and open connection with IoT platform using run time value. This command must be used after +MZREADY from monoZ:Jet module. Upon unsuccessful network/IoT connection in first attempt, monoZ:Jet shall send back a failure URC and attempt connection with network/platform 2 more times with unsuccessful URC after every attempt in case of failure. After +MZSTART:0, further +MZSTART URCs can be expected anytime in the event of network or IoT PF disconnect.
+MZコマンドはmonoZ:Jetで使用される特別なATコマンドです。
+
+### MZSTART: モデム起動
+このコマンド一つでmonoZ:Jetモジュールの初期化、モデムの起動、ネットワークへの登録、IoTプラットフォームへの接続まで行われます。\
+bandやOrgIDの設定変更はこのコマンドの処理中に適用されます。\
+このコマンドはmonoZ:Jetから
+***+MZREADY***
+のURCメッセージを受信してから実行してください。\
+IoTプラットフォームへの接続が失敗すると、monoZ:Jetは接続失敗のURCメッセージで送信後、最大2回IoTプラットフォームへの再接続を行います。\
+接続成功のURCメッセージを受信した後も、ネットワークまたはIoT プラットフォームとの接続が切断された場合は接続失敗ののURCメッセージが出ることがあります。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZSTART `}
@@ -220,8 +228,8 @@ This command is used to initialize monoZ:Jet module and check SIM Status, Config
     </div>
 </div>
 
-### Firmware Version
-This command reads the current software version of monoZ:Jet.
+### MZVERSION: FWバージョン
+monoZ:Jet の現在のファームウェア バージョンをします。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZVERSION `}
@@ -275,8 +283,8 @@ This command reads the current software version of monoZ:Jet.
 </div>
 
 
-### Data Send
-This command is used to send data to IoT PF through monoZ:Jet. 
+### MZSEND: データ送信 (MQTT PUBLISH)
+IoT PFにデータを送信します。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZSEND=<payload> `}
@@ -434,8 +442,8 @@ This command is used to send data to IoT PF through monoZ:Jet.
     </div>
 </div>
 
-### DL Data Receive
-This command enable monoZ:Jet to receive data from IoT Platform. 
+### MZRECEIVE: データ受信 (MQTT SUBSCRIBE)
+IoT PFからデータを受信できるようになります。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZRECEIVE `}

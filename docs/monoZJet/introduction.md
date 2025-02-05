@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: 概要
 sidebar_position: 1
 ---
 <!-- 
@@ -7,19 +7,25 @@ sidebar_position: 1
 <br/> -->
 <img src={require('@site/static/img/monoZ-Jet-Integration.jpg').default} className="img-center" />
 
-monoZ:Jet is a compact solderable System-on-Module designed to provide secure LPWA connectivity for your system. With its small 32.5 x 35 mm form factor, monoZ:Jet can seamlessly integrate into your product design, enabling immediate connectivity to monoZ:Link via 1NCE. Together with monoZ:Link platform, monoZ:Jet provides  a reliable means for connecting user devices thereby, optimize operational efficiencies and provide competitive advantage to the end product. Figure 2 represents the integration of monoZ:Jet with a host device. 
-### Features
-- Global connectivity supporting        
-    - LTE CAT.M1: B1/2/3/4/5/8/12/13/18/19/20/25/26/27/28/66\
+monoZ:Jet は安全なLPWA通信を提供するSoC(システムオンモジュール)です。\
+32.5 x 35 mm の小型モジュールは、あらゆる製品にシームレスに統合できます。\
+1NCEとmonoZ:Linkプラットフォームを組み合わせることで信頼性の高い通信を提供します。\
+
+### 仕様
+- 通信方式 
+    - LTE CAT.M1: B1/2/3/4/5/8/12/13/18/19/20/25/26/27/28/66
     - NB-IoT: B1/2/3/4/5/8/12/13/17/18/19/20/25/28/66
- - 2 x u.FL connector for external cellular antenna, GPS antenna 
- - USB/UART for host interaction
- - Operating Temperature: -20 °C to 60 °C 
- - Nano SIM
- - Weight: 10 grams
+- 通信/接続端子
+    - 2 x U.FLコネクタ（LTE外部アンテナ用, GNSS用） 
+    - USB/UART（ホスト通信用）
+ - 動作温度 
+     - -20 °C to 60 °C
+ - 重量 
+     - 10 g
+ - Nano SIMスロット対応
         
 
-### Board Layout
+### 基板レイアウト
 
 <div className="card">
     <div className="card__body">

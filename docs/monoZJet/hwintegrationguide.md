@@ -1,11 +1,11 @@
 ---
-title: Hardware Description
+title: ハードウェア仕様
 sidebar_position: 2
 ---
-### Pinout and Description
-The connector pin assignment is as follows. All I/O pins function at max 10mA and 3.3V rating.
+### ピン配列
+コネクタのピン割り当ては下記のとおりです。すべてのI/Oピンは最大10mAおよび3.3V定格で機能します。
 
-#### Connector J1 Pinout
+#### J1コネクタ ピン配列
 <div className="card">
     <div className="card__body">
         <div className="row">
@@ -56,7 +56,7 @@ The connector pin assignment is as follows. All I/O pins function at max 10mA an
     </div>
 </div>
 
-#### Connector J2 Pinout
+#### J2コネクタ ピン配列
 <div className="card">
     <div className="card__body">
         <div className="row">
@@ -112,8 +112,8 @@ The connector pin assignment is as follows. All I/O pins function at max 10mA an
     </div>
 </div>
 
-### Mechanical Specifications
-The mechanical dimensions of monoZ:Jet is provided in figure 6. A standard tolerance of +-0.05mm shall apply for all dimensions.
+### 基板寸法
+基板寸法は下記の図に示しています。すべてのサイズにおける寸法公差は+-0.05mm です。
 
 <div className="card">
 <div className="card__body">
