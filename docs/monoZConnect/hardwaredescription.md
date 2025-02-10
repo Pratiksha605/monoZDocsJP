@@ -1,9 +1,9 @@
 ---
-title: Hardware Description
+title: ハードウェア仕様
 sidebar_position: 2
 ---
 
-### Port
+### 通信/接続端子
 
 <div className="card">
    <div className="card_body">
@@ -11,7 +11,7 @@ sidebar_position: 2
    </div>
 </div>
 
-### Nano SIM Slot
+### Nano SIMスロット
 
 <div className="card">
     <div className="card__body">
@@ -30,20 +30,15 @@ sidebar_position: 2
     </div>
 </div>
 
--	Please turn off the power before replacing the SIM card.
-
--	Insert the SIM with the metal side facing up.
-
--	When inserting the SIM, push it in until you hear it click into place.
-
--	When removing the SIM, push it in until it clicks into place.
-
--	The SIM will come out at the front, so use tweezers to remove it.
-
--   After inserting the SIM, secure the SIM slot cover with the special screws.
+- SIMカードを交換する前に、電源が切れていることを確認してください。
+- SIMカードのIC（金属）部分を上向きにして挿入してください。
+- SIMカードはカチッと音がするまで奥に押し込みSIMスロットに収まっていることを確認してください。
+- SIMカードを取り外すには、もう一度カチッと音がするまで押し込んでください。カードがSIMスロットから出てきます。
+- SIMカードの取り出しはピンセットを使って取り外してください。
+- SIMカードを挿入後、ご使用になる前にSIMスロット カバーを専用ネジで固定してください。
 
 ### LED
-This section describes the lighting and status of monoZ:Connect's LEDs.
+monoZ:ConnectのLEDの点灯とステータスについて説明します。
 
 <div className="card">
    <div className="card_body">
@@ -52,7 +47,7 @@ This section describes the lighting and status of monoZ:Connect's LEDs.
 </div>
 
 
-1. Red/Blue LED lights up when the unit is connected to a PC with a USB cable and powered on.
+1. 本機をUSBケーブルでPCに接続し、電源が入ると赤/青のLEDが点灯します。
 <div className="card">
    <div className="card_body">
 <img src={require('@site/static/img/monoZ-Connect-Blue.jpg').default} className="img-center" />
@@ -61,7 +56,7 @@ This section describes the lighting and status of monoZ:Connect's LEDs.
 
 
 
-2. The red LED turns off a few seconds after power is turned on, and the blue LED remains on during startup.
+2. 電源投入後、数秒で赤色 LED が消灯し、起動中は青色 LED が点灯したままになります。
 <div className="card">
    <div className="card_body">
 <img src={require('@site/static/img/monoZ-Connect-Off.jpg').default} className="img-center" />
@@ -70,17 +65,14 @@ This section describes the lighting and status of monoZ:Connect's LEDs.
 
 
 
-3. The light turns off when the power is turned off.
+3. USB接続を切断して、電源が切れると全てのLEDは消灯します。
 
-The LED light and their respective state is as below, 
--	Blue light on: Power is supplied from USB.
+- 青色ライト点灯: USB から電源が供給されています。
+- 青色ライト消灯: USB から電源が供給されていません。
+- 赤色ライト点灯: 起動時に点灯します。すぐに消灯します。
 
--	Blue off: No power is supplied from USB.
-
--	Red light: Lights up at startup. Turns off immediately.
-
-### Others
-An additional part for USB locking is provided as part of vibration countermeasure.
+### USB抜け防止金具
+USBケーブルの抜け防止用のツールが付属します。
 
 <div className="card">
    <div className="card_body">
@@ -90,9 +82,10 @@ An additional part for USB locking is provided as part of vibration countermeasu
 
 
 
-#### Device Clamping
+### 本体固定用ベルト穴/ネジ穴
 
-Two flaps are provided for users to fasten monoZ:Connect with screws or tiewrap tape.
+monoZ:Connect本体を固定するベルト穴とネジ穴がございます。\
+タイラップテープでラックに固定したり、ネジで壁掛けすることが出来ます。
 
 <div className="card">
    <div className="card_body">

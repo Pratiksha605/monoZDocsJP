@@ -1,15 +1,17 @@
 ---
-title: MZCS Application Commands
+title: MZCSコマンド
 sidebar_position: 4
 ---
+
+MZCSコマンドはmomonZ:Connectサービスで使用される特別なATコマンドです。
 
 import CodeBlock from '@theme/CodeBlock';  
 import MDXComponents from '@theme-original/MDXComponents';
 
-### MZCS Start Process
+### MZCSを起動する
 
-MZCS can be executed as a standalone application from the CLI or it can be controlled and run from the Process-handler. The service can be started by following the specified pattern,
-
+MZCSは、コンソールアプリケーションから実行することも、プロセスハンドラーから実行することもできます。\
+MZCSを起動する際にはmonoZ:Connectが接続されているCOMポート番号を指定してください。
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`monoZConnectService.exe-c<COM Port>`}
 </CodeBlock>
@@ -40,8 +42,9 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Device Initialization
-This API establishes the communication with the MZC device and check the device’s configuration status. If MZC device is not configured, the service will be closed and an appropriate message will be displayed. To ensure proper usage, this API must be called first after the start of MZCS application.
+### mzcs_init &nbsp; monoZ:Connectの初期化
+monoZ:Connectの初期化と、設定確認を実行します。\
+設定が正しくない場合、エラーメッセージが表示されサービスが停止します。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`mzcs_init `}
@@ -75,8 +78,13 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Device Configuration
-The main function of this API is to set up the MZC device by configuring its Band, APN, LwM2M settings. The configured settings will be saved in the device memory. Once the device has been successfully configured, this API returns the endpoint name that will be used for further communication with the PF. Additionally, the application will close its service upon completion of this API. It is recommended to use this API when initially configuring the device or when updating the existing settings. However, frequent usage of this API should be avoided as it is intended for configuring the device only.
+### mzcs_devcfg  &nbsp; デバイス設定
+このコマンドで通信モデムのAPN設定、LwM2M設定などの初期設定が実行されます。\
+初めてmonoZ:Connectを使用する場合、SIMを入れ替えた場合は、monoZ:Connectを起動後このコマンドを実行してください。\
+実行された設定はメモリに保存されるので、monoZConnectを起動するたびに実行する必要はありません。\
+設定が正常に完了すると、SB IoT Platformとの通信に使用されるデバイスIDを返します。\
+設定コマンド実行後サービスは一度停止します。続けてMZCSを利用したい場合はMZCSを起動してください。
+
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`mzcs_devcfg `}
@@ -109,11 +117,17 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Set Network Attach
-To establish communication with the Server/Platform (PF), the MZC device needs network connectivity, which can be enabled by using this API. It is important to note that the usage of this API should be restricted to the following conditions:
-- It must be called after a successful execution of the “MZCS Device Initialization” API.
-- It should not be called before network disconnection (network detach).
-- It should not be called until the registration interval expires. For more information, please refer to “Network Attach Attempt”.
+### mzcs_nwattach &nbsp; NW接続
+NW接続、SB IoT Platformへの接続が実行されます。
+
+以下の点に注意してご使用ください。
+
+- コマンド実行前に
+<font color="#ff943d;">mzcs_init</font>
+コマンドでmonoZ:Connectの初期化が完了していること。
+- このコマンド実行後は、ネットワークが切断されるまでこのコマンドを実行しないでください。
+- Registration Intervalの時間が経過するまで呼び出さないでください。\
+  詳細については「ネットワーク再接続」を参照してください。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`mzcs_nwattach `}
@@ -146,8 +160,15 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Set Data
-This API enables the storage of data on the device for a specific Object ID, Instance ID, Resource ID. It is important to note that the data must be in Hex format and must not exceed the specified limit of 1428 bytes after conversion to Hex. This stored data will be transferred to the server, whenever there’s a read request from the server.
+### mzcs_setdata &nbsp; データ格納
+特定の`<オブジェクト ID>/<インスタンス ID>/<リソース ID>`にデータを保存できます。
+
+<font color="#ff943d;">mzcs_setdata</font>、<font color="#ff943d;">mzcs_senddata</font>で保存されたデータを上書きします。
+
+データはHex形式で、最大1428 byteまで保存できます。\
+FFで2byte、FFFFで4byte となります。 
+
+保存されたデータはSB IoT PlatformからReadリクエストがあると送信されます。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`mzcs_setdata: -o <OID> -i <IID> -r <RID> -d <Data> `}
@@ -205,9 +226,17 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Send Data
-This API enables transfer of data to the server for a specific Object ID, Instance ID, Resource ID. Additionally, it overwrites the previous stored data on the device. It is important to note that the data must be in Hex format and must not exceed the specified limit of 1428 bytes after conversion to Hex.\
-This API has a restriction on the frequency of usage, which is set to 900 second by default. For more information, please refer Section 5.7 Send Data Limitation Lock in the MZCS message description.
+### mzcs_senddata &nbsp; データ送信
+特定の`<オブジェクト ID>/<インスタンス ID>/<リソース ID>`にデータを保存しSB IoT Platformに送信できます。
+
+<font color="#ff943d;">mzcs_setdata</font>、<font color="#ff943d;">mzcs_senddata</font>で保存されたデータを上書きします。
+
+データはHex形式で、最大1428 byteまで保存できます。\
+FFで2byte、FFFFで4byte となります。 
+
+このコマンドには使用頻度の制限があり、900 秒間隔を空けて実行する必要があります。
+
+詳細については、MZCS メッセージの説明のセクション 5.7 送信データ制限ロックを参照してください。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`1. mzcs_senddata: -o <OID> -i <IID> -r <RID> -d <Data> -a <ACK>
@@ -277,13 +306,16 @@ MZNG
     </tr>
 </table>
 
+<font color="Red">こちらの仕様にいては現在実装されているか確認中のため、確認ができ次第、編集予定。</font>\
 Please note that if the send data API returns with MZNG after displaying the message “Sending OK”, MZCS will clear the data stored on the device for the specified OID, IID and RID by replacing it with null data.
 
-### MZCS Get RF Status
-This API provides the RF status of the device. If `-r` is used in the API it provides raw RF info, and if it is not used then RF status is provided in simplified form.
+### mzcs_rf &nbsp; 無線ステータス取得
+monoZ:ConnectのRF ステータスを取得します。\
+<font color="#ff943d;">-r</font> オプションが指定された場合は、詳細情報が返されます。\
+オプション指定がない場合は、RFステータスを5段階で表現して返します。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
-{`mzcs_rf -r`}
+{`mzcs_rf: -r`}
 </CodeBlock>
 
 <CodeBlock language="javascript" title="Response"  className="response">
@@ -324,8 +356,9 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Device Reset
-This API allows the user to restart the MZC device, returning it to its default state without altering any configuration settings. Following the reset the user must initiate the “MZCS Network Attach” API to reconnect and re-register with the network.
+### mzcs_devicereset &nbsp; デバイスリセット
+monoZ:Connectをリセットします。設定は変更されません。\
+ネットワークに接続し直すには、<font color="#ff943d;">mzcs_init</font> 実行後、Register Intervelの時間が経過したら、<font color="#ff943d;">mzcs_nwattach</font> を実行してください。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`mzcs_devicereset`}
@@ -358,8 +391,9 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Device Heartbeat Check
-This API enables the user to verify if the MZC device is currently active.
+### mzcs_heartbeat &nbsp; 死活監視 
+monoZ:Connectの死活監視を行います。\
+SIMの読み込みに異常がある場合は<font color="#ff943d;">MZNG</font>となります。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`mzcs_heartbeat`}
@@ -392,8 +426,9 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Set LED
-This API enables the user to control the Red (LED1) and Blue (LED2) LED, allowing them to turn it on, off, or make it blink.
+### mzcs_led &nbsp; LED設定
+はLEDの制御を行います。
+赤色(LED1)と青色(LED2)のLEDを制御し、オン、オフ、点滅させることができます。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`1. mzcs_led: -l <LED> -m <Mode> -t <Time ms>
@@ -444,8 +479,8 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Get COM Port
-This API provides the COM port number being used for communication between the application and the MZC device.
+### mzcs_com &nbsp; COMポート番号確認
+MZCSとmonoZ:Connect間の通信に使用されているCOMポート番号を確認することが出来ます。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {` mzcs_com: ?`}
@@ -480,8 +515,8 @@ MZNG`}
     </tr>
 </table>
 
-### MZCS Help
-This API enumerates the available API commands that are supported.
+### mzcs_help &nbsp; ヘルプ
+MZCSで利用可能なコマンドを確認することが出来ます。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`mzcs_help`}
@@ -516,8 +551,8 @@ MZNG
     </tr>
 </table>
 
-### MZCS Stop Process
-This API terminates the MZCS process and shut down its related services
+### mzcs_stop &nbsp; MZCSを停止する
+MZCSプロセスを終了し関連するサービスをシャットダウンします。
 
 <CodeBlock language="javascript" title="Execution Command" className="execution">
 {`mzcs_stop`}
@@ -551,29 +586,32 @@ MZNG`}
 </table>
 
 <br/>
-# MZCS MESSAGE/ACK DESCRIPTION
+# MZCS メッセージ/ACK
 
-### MZOK
+### MZOK/MZNG
 
-MZOK represents that the process has been completed successfully and the service application is ready to receive next request.
+<font color="#ff943d;">MZOK</font>はプロセスが正常に完了し、サービス アプリケーションが次の要求を受信する準備ができていることを表します。\
+<font color="#ff943d;">MZNG</font>はプロセスが正常に完了せず、サービスアプリケーションが次の要求を受信する準備ができていることを表します。
 
-### MZNG
+### Connection OK/Connection NG
 
-MZNG represents that the process is not a success and the service application is ready to receive next request.
+<font color="#ff943d;">Connection OK</font>は、monoZ:ConnectとSB IoT Platformの接続が成功したことを表します。\
+<font color="#ff943d;">Connection NG</font>は、monoZ:ConnectとSB IoT Platformの接続が失敗したことを表します。
 
-### Connection ACK
+### Registration OK/Registration NG
 
-Connection ACK, compress of two message “Connection OK/Connection NG”. It states connection of the MZCS with the PF is Success/Fail respectively.
+<font color="#ff943d;">Registration OK</font>は、monoZ:ConnectのSB IoT Platformへの登録プロセスが成功したことを表します。\
+<font color="#ff943d;">Registration NG</font>は、monoZ:ConnectのSB IoT Platformへの登録プロセスが失敗したことを表します。
 
-### Registration ACK
+### Observe
 
-Registration ACK, compress of two message “Registration OK/Registration NG”. It states that the  registration process of the MZC with the PF is Success/Fail respectively. \
-Note 1: If the registration is not a success, retry network attach process by using “MZCS Network Attach” API. \
-Note 2: If the registration is still not a success after retry, contact the necessary party.
+SB IoT PlatformからOBSERVEコマンドを受信すると、MZCSは受信したOBSERVEの`<オブジェクト ID>/<インスタンス ID>/<リソース ID>`を表示します。\
+`<CODE>`が [0] の場合、デバイスにデータを送信するためのトークンが提供されていることを意味します。\
+`<CODE>`が [1] の場合、トークンがキャンセルされていることを意味します。トークンのキャンセルは有効期限が切れたことが原因の可能性があります。
 
-### Observe ACK
+<font color="#ff943d;">mzcs_senddata</font>コマンドを使用する前に、Observeのトークン受信している必要があります。\
+トークンがキャンセルされていると、SB IoT Platformはデータを受け取れなくなります。したがって、次のObserveのトークンを受信する必要があります。
 
-	On receiving observe from the PF, service application will provide the details of observe received. If the observe message has code [0], meaning the device has been provided with the token for sending the data to PF.  If the observe message has code [1], meaning the token has been cancelled. Cancellation of the token could be, due to the token has expired.
 
   #### Message: 
     ```jsx
@@ -602,13 +640,16 @@ Note 2: If the registration is still not a success after retry, contact the nece
             </div>
         </div>
         <br/>
-        Note 1: Before using “MZCS Send data” API, receiving observe start token is a must. \
-Note 2: After Observe cancel, PF will not accept data. Hence the user has to wait for the next observe start token.
+
 
 
 ### Notify Process ACK
 
-“MZCS Send data” API will display the following message as shown on the line diagram below, based on the acknowledgement option chosen. Sending OK/NG if acknowledgment option is chosen as Non-Conformable notify, refer Figure 2 and Send OK/NG & Sending OK/NG if acknowledgment option is chosen as conformable notify, refer Figure 3. 
+### プロセス ACK を通知
+
+<font color="#ff943d;">mzcs_senddata</font>コマンドを実行すると、ACK応答オプションに基づいて、以下に示すようにメッセージが送信されます。\
+ACK応答オプション `0: Non conformable notify` を選択している場合はSending OKが返ります。\
+ACK応答オプション `1: Conformable notify (default)` を選択している場合はSending OKが返った後、Send OKが返ります。
 <div className="card">
     <div className="card_body">
         <img src={require('@site/static/img/monoZ-Connect-Non-Comforable.jpg').default} className="img-center" />
@@ -621,15 +662,21 @@ Note 2: After Observe cancel, PF will not accept data. Hence the user has to wai
    </div>
 </div>
 
-### Send Data Limitation Lock
+### データ送信ロック
 
-“MZCS Send data” API will be locked for 900 seconds after its usage, in order to restrict the data being transferred to PF. When lock is released the following message will be seen “MZSEND,1,00:00:00” where, [1] unlocked. 
+<font color="#ff943d;">mzcs_senddata</font>は、SB IoT Platformの負荷を軽減するために最後の送信から900秒経過するまでロックされます。
 
-On using “MZCS Send data” API when lock is in progress the following message will be seen  “MZSEND,0,HH:MM:SS” where, [0] Locked; HH:MM:SS represents the absolute wait time.
+ロックが解除されると、次のメッセージが表示されます。\
+<font color="#ff943d;">MZSEND</font>,1,00:00:00
 
-### Write/DL Request
+ロック中に<font color="#ff943d;">mzcs_senddata</font>を実行すると、次のメッセージが表示されます。\
+<font color="#ff943d;">MZSEND</font>,0,HH:MM:SS
 
-On receiving Write request from the PF, service application will provide the information as follows,
+HH:MM:SS はロックが解除される時刻を示します。
+
+### Write（DLリクエスト）
+
+SB IoT PlatformかWriteを受信すると、MZCSは以下の情報を表示します。
 
 #### Message: 
     ```jsx
@@ -659,33 +706,48 @@ On receiving Write request from the PF, service application will provide the inf
         </div>
         <br/>
 
-### Network Attach Attempt
+### ネットワーク接続ロック
 
-In MZC, for a successful registration it requires a minimum of 242 second interval before the retry/re-use of “MZCS Network Attach” API. Hence, the MZCS locks the “MZCS Network attach” API usage, the following message will be seen on lock release, “MZNW,1,00:00:00” where, [1] unlocked. 
+<font color="#ff943d;">mzcs_nwattach</font>は、SB IoT Platformの負荷を軽減するために最後のネットワーク接続から242秒経過するまでロックされます。
 
-On using the “MZCS Network Attach” API when lock is in progress, the following message will be seen  “MZNW,0,HH:MM:SS” where, [0] Locked; HH:MM:SS represents the absolute wait time.
+ロックが解除されると、次のメッセージが表示されます。\
+<font color="#ff943d;">MZNW</font>,1,00:00:00
 
-### COM Port Disconnection
 
-After the start of the application, if the COM port is disconnected the following message will be seen < COM port> disconnected.
+ロック中に<font color="#ff943d;">mzcs_nwattach</font>を実行すると、次のメッセージが表示されます。\
+<font color="#ff943d;">MZNW</font>,0,HH:MM:SS
 
-### User Request During Ongoing Process
+HH:MM:SS はロックが解除される時刻を示します。
 
-During an API is in progress on receiving a new request, MZCS respond with the following message “MZPROCESSRUNNING”.
+### COMポート切断
 
-### Device Failure
+MZCSの起動後、COMポートの切断を検知すると、次のメッセージが表示されます 。\
+COM10 disconnected.
 
-If an API failed and MZCS responded with the following message “MZCSDEVICEFAILURE”. Follow the below steps,
-        -	Ensure if the MZCS service has been ended, if not wait for the service to end.
-        -	Disconnect the device from the PC.
-        -	Reconnect the device with the PC after few minutes.
-        -	Now run the application again.
-        -	If the issue still prevails contact the necessary party.
+COM10 は切断されたCOMポート番号を示します。
+### プロセス進行中のコマンド実行
 
-### Valid Request
+先に実行したコマンドによるプロセスが進行中に、新たにコマンドを実行すると、MZCS は次のメッセージを表示します。\
+MZPROCESSRUNNING
 
-On receiving a API request, MZCS validate the request and the following arguments (if any). For a successful validation MZCS respond with, “Valid Request.”.
+### デバイス障害
 
-### Invalid Request
+実行したコマンドが失敗し、MZCS が次のメッセージを返した場合は以下の手順に従ってください。\
+MZCSDEVICEFAILURE
 
-On receiving a API request, MZCS validate the request and the following arguments (if any). For an unsuccessful validation MZCS respond with, “Invalid Request.”.
+1. MZCSが終了しているかどうかを確認し、終了していない場合はサービスが終了するまで待ちます。
+2. monoZ:Connectを PC から切断します。
+3. 数分後にmonoZ:Connectを PC に再接続します。
+4. MZCSを開始します。
+
+### 有効なリクエスト
+
+コマンドを受信すると、MZCS はリクエスト引数を検証します。\
+検証の結果、有効なリクエストであった場合、次のメッセージが表示されます。\
+Valid Request.
+
+### 無効なリクエスト
+
+コマンドを受信すると、MZCS はリクエスト引数を検証します。\
+検証の結果、無効なリクエストであった場合、次のメッセージが表示されます。\
+Invalid Request.

@@ -1,16 +1,17 @@
 ---
-title: Host Communication
+title: ホスト通信
 sidebar_position: 3
 ---
 
 
-Communication with monoZ:Connect is simplified using monoZ:Connect Service(MZCS) Application. MZCS can be installed on Windows/Linux platform and using the MZCS commands, users can communicate to monoZ:Connect from the user application. Upon installation of MZCS, use the MZCS commands to interact with monoZ:Connect with MZCS.
+monoZ:Connectと通信するにはmonoZ:Connectサービス(MZCS)を使用します。\
+MZCSをWindows/Linuxマシンにインストールして、ホストは簡単なコマンドをMZCSに送信するだけでmonoZ:Connectと通信することが出来ます。
 
 <img src={require('@site/static/img/monoZ-Connect-Host-Comm.jpg').default} className="img-center" />
 
-### System Requirements(MZCS)
+### システム要件
 
-#### Windows Platform
+#### Windows
 
 <table>
     <tr>
@@ -38,7 +39,7 @@ Windows Server 2016 (64bit)/ Windows Server 2019 (64 bit)
     </tr>
 </table>
 
-#### Linux Platform
+#### Linux
 
 <table>
     <tr>
@@ -55,22 +56,22 @@ Windows Server 2016 (64bit)/ Windows Server 2019 (64 bit)
     </tr>
 </table>
 
-### Pre-requisites 
-* To ensure proper use of the device, it is important to follow the below steps prior for using the device.
 
-    -	Connect the MZC device to the PC via USB.
+### COMポート設定
+1. monoZ:ConnectをUSB経由でPCに接続します。
 
-    -	Set the port settings for the specific COM port to which the device is connected, via the “Device manager”.
+2. 「デバイスマネージャー」を起動して、デバイスが接続されているCOMポートのポート設定を下記の値に変更します。
+        -	Bit rate:		115200
 
-        1.	Bit rate:		115200
+        -	Data bits:	8
 
-        2.	Data bits:	8
+        -	Parity:		None
 
-        3.	Parity:		None
+        -	Stop bits:	1
 
-        4.	Stop bits:	1
-
-        5.	Flow control:	None
-
-- monoZ:Connect use LwM2M protocol over NIDD to interact with the cloud. Users are expected to have a basic understanding of LwM2M protocol.
-- monoZ:Connect connect exclusively to SoftBank IoT Platform. Users are expected to have understanding of the platform and how to trigger requests from the platform.
+        -	Flow control:	None
+### monoZConnectを利用するための前提条件 
+- monoZ:Connectは、LwM2M プロトコルを使用してクラウドと通信します。\
+  ユーザーはLwM2Mプロトコルの基本的な仕様を理解していることが求められます。
+- monoZ:Connectは、SoftBank IoT Platformに接続します。\
+  ユーザーはSoftBank IoT Platformの基本的な振る舞いを理解していることが求められます。
