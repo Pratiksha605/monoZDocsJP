@@ -5,4 +5,7 @@ sidebar_position: 3
 
 <img src={require('@site/static/img/monoZ-Jet-Integration.jpg').default} className="img-center" />
 
-monoZ:Link is an advanced IoT data orchestration platform designed to facilitate secure, efficient, and cost-effective data transmission between IoT devices and cloud applications within a closed network. The platform offers comprehensive device and connectivity management, protocol translation, and integration capabilities through a no-code cloud connector supporting MQTT, TCP, HTTP, and HTTPS/MQTTS protocols. Key features include a firmware over-the-air (FOTA) service for seamless updates, a centralized database service, and a REST API for flexible data handling. It ensures high security with reduced data overhead by eliminating the need for TLS certificates. Learn how to set up your account, create groups, deploy device fleets, manage monoZ:Jet and host firmware, securely route your data, and more.
+monoZ:Linkは、安全性の高い通信経路を担保し、1NCE SIMと連携したコスト効率の高いデータ転送をワンストップで実現するために設計されたIoTプラットフォームです。\
+monoZ:Linkでは、MQTT、HTTPプロトコルをサポートしており、IoTデバイスの管理、プロトコル変換、サードパーティサービスへの転送サービスを提供しています。\
+その他にも、シームレスなFW更新を実現するFOTA サービスや、1NCE SIMの使用状況を確認するREST API などが用意されています。\
+1NCEネットワークとmonoZ:Link間をプライベート通信で接続しているため、デバイスからデータを送信する際にTLSなどのセキュリティプロトコルをかけずに高いセキュリティが確保されます。さらにセキュリティのオーバーヘッドがかからないため、通信コストを抑えることが出来ます。

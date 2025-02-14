@@ -3,36 +3,43 @@ title: Webhook
 sidebar_position: 1
 ---
 
-In this guide we assume you have already have an external server ready to receive data from monoZ:Link.
+このガイドでは、monoZ:Link からデータを受信できるHTTPサーバーがすでに用意されていることを前提としています。
 
-1. Navigate to “Configuration” and click on “Add Configuration” from the top right corner. 
+1. monoZ:Link を開いて、[Configuration] → [Add Configuration]をクリックします。
 
-2. Choose “Webhook” as destination protocol.
+2. ドロップダウンリストから[Webhook]を選択してください。
 
 <img src={require('@site/static/img/monoZ-Link-Wehbook.jpg').default} className="img-center" />
 
-3. Add the destination server details and create the configurations.
-   1.	Specify MQTT in the Source protocol 
+3. 下記の転送設定を行います。。
+   1. [Source Protocol]に"MQTT"を指定します。
 
-   2.	Enter your configuration name 
+   2. [Configuration Name]を入力します。
 
-   3.	Enter suitable description for the configuration  
+   3. [Description]には必要なコメントを残しておくことが出来ます。
 
-   4.	Enter the HTTP/HTTPS URL for the destination Server 
+   4. [HOST]に転送先サーバーのURLを入力します。
 
-   5.	Select the Authorization method under the Parameters 
+   5. [Parameters]で認証方法を選択します。ここでは"No Authorization"を指定して進めます。
 
-   6.	If you wish to give a custom header (e.g., group name, etc.) add your custom Header 
+   6. [Custom Headers]にはカスタム ヘッダーを指定することが出来ます。ここでは何も指定せずに進みます。
 
-   7.	Choose Between ICCID or Topic to be sent along with the payload to the destination server 
-   
-   8.	Upon Submit the configuration shall be created
+   7. [Send]で転送するデータに含めるデバイス識別情報をデバイスのICCID、もしくはMQTTトピックのどちらかを選択します。ここではICCIDを選択します。
+
+   8. [Save]をクリックすると転送設定が保存されます。
 
   <img src={require('@site/static/img/monoZ-Link-Protocol-Configuration.png').default} className="img-center" />
 
-#### Webhook Data Format
+#### Webhook データ転送仕様
+monoz:Linkは以下の仕様でデータを転送します。
+   - mooZ:Linkは同じグループ宛に受信したデータを1秒ごとにまとめて転送しています。1秒間に11個以上のパケットを受信した場合はデータを分割して転送します。分割された各データには最大10個の受信データが含まれます。
+   - 転送先サーバーにデータを送信すると、monoZ:Linkは最大90 秒間応答を待ちます。
+   - 転送先サーバーから応答がない場合、monoZ:Linkは再送を行います。再送は最大2回試行されます。最後の再送に応答がなかった場合は転送に失敗したデータを破棄します。
+   - 転送先サーバーからエラー応答があった場合は、再送は行わずにデータを破棄します。
+   - データベース機能が有効になっている場合、転送に失敗したデータは保存されます。
 
-monoz:Link pushes data to the specified server in the following format.When multiple packets arrive per second, data output will be output in 10 packets for each registered group. Upon data push to the specified server, the server will wait for a response for up to 90 seconds. In case of no response from server, monoZ:Link will retry the data push immediately and if the retry is unsuccessful, the data will be discarded without further attempts. If the database function is enabled, the data will be stored as failed data. 
+#### Webhook 転送データ形式
+monoz:Linkは以下のデータ形式でデータを転送します。
 
 ##### Format:
 <table>
@@ -90,7 +97,8 @@ monoz:Link pushes data to the specified server in the following format.When mult
    </tr>
 </table>
 
-##### Example 1:
+##### Example 1: 1秒間に1つのパケットを取得した場合
+
 <table>
    <tr>
       <td><b>Field</b></td>
@@ -131,7 +139,7 @@ monoz:Link pushes data to the specified server in the following format.When mult
    
 </table>
 
-##### Example 2: When multiple packets are receiverd in 1 second:
+##### Example 2: 1秒間に複数のパケットを取得した場合
 <table>
    <tr>
       <td><b>Field</b></td>

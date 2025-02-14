@@ -1,27 +1,38 @@
 ---
-title: Feature Walk through
+title: monoZ:Linkを使ってみる
 sidebar_position: 2
 ---
 
-### Create a monoZ:Link account
+### monoZ:Linkアカウントを作成する
 
-monoZ:Link acts as central platform for all the services. If a member of your organisation already holds an account, then they may add a new user from their console. If no account exists for you. 
-Follow the steps below to create an account.
-1. 	Navigate to the monoZ:Link website and click on the "Create Account" button
-2. 	In the screen that follows, enter the following information, 
-    1.	Name: Full Name
+mmonoZ:Linkのアカウントを作成してみましょう。
 
-    2.	Email: Enter your unique email. This shall be your login ID
+1. monoZ:Linkログインページに移動して、[Create Account] ボタンをクリックします。
 
-    3. Password: Password for your Login ID. Password must contain atleast 1 uppercase, 1 number and 1 special character
+2. monoZ:Linkアカウント作成画面で、必要な情報を入力したら、[アカウントを作成する]ボタンをクリックします。
 
-    4.	Organization Name: Enter the name of your company or organization.
+    1.	名前: フルネームを入力してください。
 
-    5.	Org ID: Unique identifier for your organization. Org ID is limited to a maximum of 8 Alpha-Numeric characters. Once created it cannot be changed. 
+    2.	Eメール: ログインIDに使用するEメールのアドレスを入力してください。
 
-    6.	Contact Details: Click same as above or in case if you need someone else as contact person in your organization then enter their details. 
+    3. パスワード: ログインに使用するパスワードを入力してください。最低1つの大文字、1つの数字、1つの特殊文字を含めてください。
 
-    7. Verify your email address and activate your account by clicking on the link in the email you receive from monoZ. The link will return you to link.monoz.io and you will be ready to create your first deployment.
+    4.	組織名: あなたが所属している組織名を入力してください。
+
+    5.	組織ID: あなたが所属している組織を特定できる最大8文字の英数字でIDを入力してください。使用済みの組織IDは使用できません。組織IDは後で変更することが出来ませんのでご注意ください。
+
+    6.	T番号: T番号もしくはVAT番号を入力してください。
+
+    7.	担当者の名前とメールアドレスが同じです: チェックを入れるとEメールアドレスと同じになります。別の連絡先を登録したい場合はチェックを外して連絡先情報を入力してください。
+
+    8.	連絡先電話番号: 連絡が出来る電話番号を入力してください。
+
+    9.	請求先住所: 請求先の住所を入力してください。
+
+    10.	請求先住所と配送先住所が同じです: チェックを入れると請求先住所と同じになります。別の住所で配送先を登録したい場合はチェックを外して配送先住所を入力してください。
+
+3. 登録したEメール宛にAccount Verificationのメールが届いたら、メール本文にある[Active]ボタンをクリックしてアカウントを有効化してください。
+
 
    <img src={require('@site/static/img/monoZ-Link-feature-walk-through.png').default} className="img-center" />
    <img src={require('@site/static/img/monoZ-Link-Account.png').default} className="img-center" />
