@@ -1,5 +1,5 @@
 ---
-title: monoZ:Linkを使ってみる
+title: monoZ:Linkを使う
 sidebar_position: 2
 ---
 

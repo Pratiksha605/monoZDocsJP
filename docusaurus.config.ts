@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'monoZ Docs',
-  tagline: 'Comprehensive guide to get started with monoZ',
+  tagline: 'monoZでIoTを始めよう', //Comprehensive guide to get started with monoZ
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
