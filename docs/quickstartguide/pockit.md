@@ -1,79 +1,109 @@
 ---
-title: POC Kit
+title: monoZ:Jet クイックスタートガイド
 sidebar_position: 1
 ---
 
-Welcome to the Quickstart Guide for setting up your monoZ POC kit. In this guide we shall cover from POC kit unboxing and demonstrate how to send your first message from your device to monoZ:Link using monoZ:Jet and vice versa. This is a quickstart guide and for detailed description & limitations of individual features/commands, check out the respective sections in monoZ docs site.
+monoZ:Jetクイックスタートガイドへようこそ。このガイドではmonoZ:Jet PoCキットを使用して、ホストからmonoZ:Linkにメッセージを送信する方法と、monoZ:Linkからのメッセージをホストで受け取る方法を解説します。より詳しい内容を学びたい方は、monoZ:Jet、monoZ:Linkのドキュメントを参照してください。
 
 ### Prerequisites
-Before we get started, let’s prepare the essentials. 
-1.	We assume you already have a valid monoZ:Link account. If not, ask your organization admin to provide access to your organization`s existing account or <a target="_blank" href="https://link.monoz.io/monoZLink/Login">click here</a> to create a new organization and account.
-2.	We assume you already have a POC kit in hand. If not, create an order from monoZ:Link Order management tab.
-3.	We assume the ICCID of the 1NCE SIM in the POC kit is already registered in monoZ:Link under Devices menu or in Registered devices under Devices menu. If it is not registered, contact support by emailing customer-care@meritech.odoo.com
-4.	Prepare your host device and soldering kit/USB cable to enable connection between host device and monoZ:Jet.
+クイックスタートガイドを始める前に、必要な情報がそろっているか確認しましょう。
+1. monoZ:Linkを利用するにはmonoZ:Linkアカウントの登録が必要です。\
+アカウントをお持ちでない場合は、組織の管理者に新規アカウントの作成を依頼するか、<a target="_blank" href="https://link.monoz.io/monoZLink/Login">ここをクリック</a>して新しい組織でアカウントを作成してください。
+2. monoZ:JetのPoCキットを使用します。お持ちでない場合は、monoZ:Link の注文管理タブから注文してください。
+3. PoCキットの1NCE SIMがmonoZ:Linkのデバイスメニューまたはデバイスメニューの登録済みデバイスにすでに登録されていることをご確認ください。登録されていない場合は、monoZサポート customer-care@meritech.odoo.com にお問い合わせください。
+4. ホストとmonoZ:Jetを接続するために、はんだ付けキットもしくはUSBケーブルをご用意ください。
 
-### Unboxing
-1.	Open your POC kit package to find the following items,\
-    i.	monoZ:Jet \
-    ii.	1NCE SIM \
-    iii.	Standard Antenna \
-    iv.	Pi Add-on board (optional board) 
-2.	Upon unboxing, verify if the ICCID on the SIM is available under Devices or under Registered devices list.
+### 開封
+1. POC キットのパッケージを開き、次のアイテムを見つけます。\
+    i. monoZ:Jet \
+    ii. 1NCE SIM \
+    iii. 標準アンテナ \
+    iv. Pi アドオン ボード (オプション ボード)
+2. 1NCE SIMのICCIDがmonoZ:Linkの[デバイス]または[登録済みデバイス]に登録されていることを確認します。
+
     <img className="img-center" src={require('@site/static/img/quickguide1.png').default} />
 
 ### Setting Up monoZ:Jet
-1.	monoZ:Jet can communicate with the host via USB mode or UART mode. By default, USB mode is enabled.
-2.	If you want the host to communicate with monoZ:Jet using UART, then monoZ:Jet can be switched to UART mode by one of the following methods, \
-    i.	Method 1: Cutoff the optional part of the monoZ:Jet board using PCB cutter. This is a permanent switch and monoZ:Jet cannot be used under USB mode again, however it is ideal for space constrained usecases. 
+1. monoZ:Jetは、USBモードまたはUARTモードでホストと通信することが出来ます。デフォルトではUSB モードが有効になっています。
+2. ホストがUARTモードでmonoZ:Jetと通信したい場合は、次のいずれかの方法でmonoZ:JetをUART モードに切り替えることができます。\
+    i. 方法 1: PCBカッターを使用してmonoZ:JetボードのUSBコネクタ基板を切り取ります。一度切り離すとUSBモードで使用することは出来なくなりますのでご注意ください。
     <img className="img-center" src={require('@site/static/img/quickguide2.png').default} />
-    ii.	Remove the following 3 resistors shown below to disconnect the communication line between USB and the processor. In this method monoZ:Jet can be converted to USB mode by mounting the resistors back to its appropriate position.
+    ii. 以下の画像を参考に、3つの抵抗器を取り外します。この方法を使用した場合、抵抗器を元の位置にはんだ付けし直すことで、monoZ:JetをUSBモードに戻すことも出来ます。  
     <img className="img-center" src={require('@site/static/img/quickguide3.png').default} />
-3.	Check the communication configurations for USB mode & UART mode <a target="_blank" href="https://docs.monoz.io/docs/monoZJet/hostcommunication">here</a>.
-4.	For this quickstart guide, we shall use our PC as the host device and communicate with monoZ:Jet over USB using a terminal emulator.
+3. USBモードとUART モードの通信構成を確認する場合は、 <a target="_blank" href="https://docs.monoz.io/docs/monoZJet/hostcommunication">こちら</a>をご確認ください。
+4. 本クイックスタートガイドでは、PCをホストデバイスとして使用し、コンソールアプリケーションを使用してUSB経由でmonoZ:Jetと通信します。
     <img className="img-center" src={require('@site/static/img/quickguide4.png').default} />
 
-Caution:\
-i)	Do not power up monoZ:Jet via USB and 5V cascade VBUS pin at the same time. This may cause the monoZ:Jet to fail. The power source may also face damage (or overcurrent).\
-ii)	When in USB mode, the cascade UART pins shouldn’t be connected to any data source. monoZ:Jet shall face device failure when data is transmitted through cascade UART when monoZ:Jet is in USB mode.
+##### 注意:
+    i. USBと5V VBUSピン経由で同時にmonoZ:Jetに給電しないでください。 過電流によりmonoZ:Jet が故障する可能性がございます。
+    ii. USBモードの場合、UARTピンはどこにも接続しないでください。monoZ:JetがUSBモードのときに、UART経由でデータが送信されると、monoZ:Jetはデバイス障害が発生することがあります。
 
 
 
-### Setting Up monoZ:Link
-1.	If this is your first device, the monoZ:Link setup is required. Let’s log in to monoZ:Link and start with protocol configurations. Protocol configurations allow you to transform protocol and forward your data from monoZ:Jet to your custom endpoints in public cloud like AWS or your own on-premises. For this guide, we shall push the data to a 3rd party custom HTTPS endpoint.
-2.	Let’s navigate to protocol configurations and create a new webhook configuration. 
+### monoZ:Linkの初回設定
+組織で初めてmonoZ:Linkを使用する場合は登録済みデバイスをグループに所属させる必要があります。\
+monoZ:Linkにログインして、転送設定の登録を行います。\
+転送設定ではプロトコルの変換と、転送先の設定を行います。\
+このガイドでは、転送先にHTTPSエンドポイントを指定します。
+1.	[転送設定]>[転送設定の登録]>[Webhook]を選択して、新規の転送設定を登録します。
     <img className="img-center" src={require('@site/static/img/quickguide5.png').default} />
-3.	Once configuration is done, let's navigate to Groups and create a new group. If there is no group, then the first created group shall be automatically allocated as “Default” group. 
+2. 登録が完了したら、[グループ]>[グループの登録]を選択して、新しいグループを作成します。\
+グループの登録では手順1で登録した「転送設定」を選択してください。\
+初めて作成したグループは自動的に「デフォルト」グループとして割り当てられます。
     <img className="img-center" src={require('@site/static/img/quickguide6.png').default} />
-4.	As we didn’t have a default group during time of purchase let’s manually assign a group to the device. Navigate to Registered devices in the Devices page and select the ICCID of the target device. When a default group was available during purchase (purchase here refers to the step when device ICCIDs are added to user`s monoZ:Link account), then the new devices are automatically assigned to the default group, thereby making them ready to use upon purchase. With this step, monoZ:Link setup is complete.
+3. [デバイス]>[登録済みのデバイス]をクリックして、対象デバイスのICCIDにチェックを入れて[移動]をクリックします。
+選択デバイスのグループ変更では、手順2で作成したグループを選択して[移動]をクリックします。\
+デフォルトグループが割り当てられた後にSIMを購入した場合は、新しいデバイスがmonoZ:Linkに登録される際に自動的にデフォルトグループに割り当てられます。\
+必要に応じてデバイスを別のグループに移動させてください。このステップで、monoZ:Link のセットアップは完了です。
     <img className="img-center" src={require('@site/static/img/quickguide7.png').default} />
  
 
-### Send data from monoZ:Jet
-1.	Let’s initiate data transfer from host to monoZ:Jet. As mentioned earlier, we shall use PC as the host device for this QuickStart guide. To begin, attach the standard antenna on u.FL port (Cellular) and insert the 1NCE SIM from the POC package to monoZ:Jet.
+### データを送信する
+1. ホストからmonoZ:Jetへデータを送信します。\
+前述のようにこのクイックスタートガイドではPCをホストデバイスとして使用します。\
+まずはPoCパッケージの1NCE SIMをmonoZ:Jetに挿入し、U.FLポート(Main)に付属のアンテナを接続します。
     <img className="img-center" src={require('@site/static/img/quickguide8.png').default} />
  
-2.	Connect monoZ:Jet to your PC via USB-C cable. Once connected you should immediately notice the Power LED (Red) light up on the monoZ:Jet board.
+2. USBケーブルを使用してmonoZ:JetをPCに接続します。接続すると、monoZ:Jetボードの電源LEDが赤く点灯します。
     <img className="img-center" src={require('@site/static/img/quickguide9.png').default} />
  
-3.	Now, Let's set up the terminal emulator to establish communication with monoZ:Jet. <a target="_blank" href="https://docs.monoz.io/v1/_d_e_b_u_g__c_o_n_s_o_l_e.html">Click here to view</a> step by step guide on setting PUTTY, an open-source software terminal emulator.
-4.	Upon power on, monoZ:Jet sends +MZREADY to the host signaling readiness to receive commands for next action. This is received within milliseconds on connecting USB to monoZ:Jet and hence you may not be able to capture it on the emulator console. 
-5.	By default monoZ:Jet is set with all supported network bands, and we strongly advise to set the recommended bands in your target regions of operation to quicken the time to network connection. Refer to the MZBAND MZ command for more details on recommended band settings. Since we are performing this setup from Japan, let’s set the band for Japan. This is a one-time setting and doesn’t need to be repeated unless required to change the target region for usage. +MZBAND: 0 response refers to successful Band setting.
+3. 次にターミナルエミュレーターを使ってmonoZ:Jetとの通信を確立します。\
+オープンソースソフトウェアターミナルエミュレーターPuttyの設定に関するガイドについては、<a target="_blank" href="https://docs.monoz.io/v1/_d_e_b_u_g__c_o_n_s_o_l_e.html">こちらをクリックして参照してください</a>。
+4. 電源がオンになると、monoZ:Jetはホストに+MZREADYを送信し、コマンドを受信する準備ができていることを示します。\
+このメッセージはUSBをmonoZ:Jetに接続してから数ミリ秒以内に送信されるため、ターミナルエミュレータでは受信できない可能性があります。
+5. デフォルトでは、monoZ:Jetはサポートされているすべてのbandを使用する設定になっています。
+ネットワーク接続までの時間を短縮するには、ご利用の地域で使用されているbandのみを設定することを強くお勧めします。
+推奨されるバンド設定の詳細については、MZコマンドのMZBANDを参照してください。\
+このクイックスタートガイドでは日本から実行していいる想定で日本のバンドを設定します。\
+Band設定は1度設定すれば、ご利用の地域が変わらない限りは繰り返し設定する必要はありません。\
++MZBAND: 0 応答は、バンド設定が成功したことを示します。
     <img className="img-center" src={require('@site/static/img/quickguide10.png').default} />
-6.	Next let's go ahead and set the ORG ID for monoZ:Jet. ORG ID is a security feature by monoZ:Link to ignore data transferred from devices not belonging to the tenants. ORG ID is set by the user during organization creation and can be verified under the “Profile” section of the organization/tenant admin. ORG ID is a one-time setting on monoZ:Jet.
+6. 次にmonoZ:JetのORG IDを設定します。\
+ORG IDはデバイスが所属する組織を特定するために設定します。\
+こちらも1度設定すればOKです。
     <img className="img-center" src={require('@site/static/img/quickguide11.png').default} /><br/>
     <img className="img-center" src={require('@site/static/img/quickguide12.png').default} />
 
-7.	Now let’s initialize monoZ:Jet and get connected using MZSTART. There could be chances MZSTART might respond back with +MZSTART: 3 or +MZSTART: 4, where monoZ:Jet is retrying to connect to network or monoZ:Link platform. In such cases host is expected to wait for +MZSTART: 0. When searching for network, monoZ:Jet searches all the set bands in incremental order to attach to the best possible network supported in the region, and hence setting the recommended regional bands plays a crucial role to minimize the time to connect with network. With the recommended band settings, we can expect first network connection to be completed in under 2 minutes. While creating this guide, we received successful +MZSTART:0 in about 45 seconds. 
+7. 次にmonoZ:Jetを初期化し、MZSTARTを使用して接続します。\
+MZSTART実行後、ホストは+MZSTART:0とメッセージが表示されるまで待ってください。\
++MZSTART:3または+MZSTART:4とメッセージが表示さえることがあります。\
+これはmonoZ:Jetがネットワーク、monoZ:Linkプラットフォームへの接続を再試行していることを表しています。\
+推奨のband設定をしていても、最初のネットワーク接続は2分～3分程度かかることがあります。\
+推奨band設定をしていない場合、monoZ:Jetは全てのbandのスキャンを行うため、さらに接続に時間がかかります。
     <img className="img-center" src={require('@site/static/img/quickguide13.png').default} />
-8.	Once the +MZSTART: 0 is recieved, host can send data to monoZ:Link using the MZSEND command. 
+8. +MZSTART:0を受信すると、ホストはMZSENDコマンドを使用してmonoZ:Linkにデータを送信できます。
     <img className="img-center" src={require('@site/static/img/quickguide14.png').default} />
 
-9.	The transmitted data is received by monoZ:Link through a secure channel, and then data is pushed to the configured server as per configuration settings. The data pushed from monoZ:Jet was successfully received on the 3rd party server via monoZ:Link.
+9. 送信されたデータは安全なチャネルを介してmonoZ:Linkに送信されます。\
+その後、monoZ:Linkは転送設定に従って転送先サーバーに指定のプロトコルでデータを転送します。\
+monoZ:Jetから送信されたデータは、monoZ:Linkを介して転送先サーバーで受信されます。
     <img className="img-center" src={require('@site/static/img/quickguide15.png').default} />
-10.	Use MZRECEIVE to enable downlink passthrough on monoZ:Jet. Once enabled, monoZ:Jet push the data received from monoZ:Link to the host using the +MZRECEIVE URC. If downlink is required, host needs to enable downlink passthrough using MZRECEIVE after every monoZ:Jet power on, hardware reset and wakeup from MZSLEEP=0.
+10. MZRECEIVEを使用して、monoZ:JetでmonoZ:Linkからのメッセージを受信状態にします。\
+受信状態を有効にすると、monoZ:Jetは +MZRECEIVE URCを使用して、monoZ:Linkから受信したデータをホストに送信します。
     <img className="img-center" src={require('@site/static/img/quickguide16.png').default} />
 11.	Let’s send downlink from monoZ:Link.
     <img className="img-center" src={require('@site/static/img/quickguide17.png').default} /><br/>
     <img className="img-center" src={require('@site/static/img/quickguide18.png').default} />
  
-12.	Congrats! With this, you have learnt the basics of enabling connectivity with monoZ:Jet and monoZ:Link. Now go transform your physical products to connected solutions. In case you have any specific questions, create a support request by emailing us at customer-care@meritech.odoo.com
+12. これでmonoZ:JetとmonoZ:Linkを使ったデータ送信のクイックスタートガイドは終了です。\
+不明な点がある場合は、customer-care@meritech.odoo.com にメールでサポートリクエストを送信してください。
