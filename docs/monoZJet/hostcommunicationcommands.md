@@ -1710,6 +1710,381 @@ This command is used for configure BAND setting to connect with network. By defa
     </div>
 </div>
 
+### FOTA - Send FOTA message
+This command allows the host to set a firmware update status message for the OTA server after successful monoZ:Jet initialization via MZSTART. It is typically used to report the latest host firmware version or the outcome of an OTA update. The MZSTARTMSG command can only be executed before MZSTART, and the configured message will be sent immediately to the FOTA server upon succesful platform connection.
+
+
+<CodeBlock language="javascript" title="Execution command">
+{`MZSTARTMSG=<message>`}
+</CodeBlock>
+<CodeBlock language="javascript" title="FOTA update URC"  className="responseJet">
+{`MZOK/MZFAIL
+<upon_succesful_MZSTART>
++MZSTARTMSG: <send_sts>`}
+</CodeBlock>
+
+
+#### Defined Values
+<div className="card">
+    <div className="card__body">
+        <div className='row'> 
+            <div className='col col--4'> 
+                `<payload>`
+            </div>
+            <div className='col col--8'> 
+                String Type.
+                <div className="row">
+                    <div className="col col--6">
+                    Max byte size
+                    </div>
+                    <div className="col col--6">
+                    1024B
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col col--6">
+                    Accepted Characters
+                    </div>
+                    <div className="col col--6">
+                    Alphanumeric, Kanji, “#$%&’()/\<>.,?{};+-!@
+                    <br/> There is a possibility certain kanji characters may not be accepted.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div className="card">
+    <div className="card__body">
+        <div className="row">
+            <div className="col col--4">
+                `<send_sts>`
+            </div>
+            <div className="col col--8">
+                Integer Type.
+                <div className="row">
+                    <div className="col col--2">
+                    0
+                    </div>
+                    <div className="col col--10">
+                    STARTMSG message send success
+                    </div>
+                </div>
+               <div className="row">
+                    <div className="col col--2">
+                    1
+                    </div>
+                    <div className="col col--10">
+                    STARTMSG message send failed
+                    </div>
+                </div>
+                 <div className="row">
+                    <div className="col col--2">
+                    2
+                    </div>
+                    <div className="col col--10">
+                    STARTMSG message length exceeds limit
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col col--2">
+                    3
+                    </div>
+                    <div className="col col--10">
+                    STARTMSG message invalid format
+                    </div>
+                </div>                
+                 </div>
+                 </div>
+    </div>
+</div>
+
+#### Maximum Response Time
+<table>
+    <tr>
+        <td>MZOK/MZFAIL</td>
+        <td>2 seconds</td>
+    </tr>
+    <tr>
+        <td>+MZMZSTATMSG</td>
+        <td>5 seconds (from MZSTART:0)</td>
+    </tr>
+</table>
+
+#### Usage
+<div className="card">
+    <div className="card__body">
+        ```jsx
+        MZSTARTMSG=V.1.2 update complete
+        MZOK
+        MZSTART
+        +MZSTART:0
+        +MZREQFOTASEG: 0
+        ```
+         </div>
+</div>
+
+### FOTA - Update URC
+monoZ:Jet pass the FOTA update availability notification & FOTA payload to the host using this URC. New FOTA update notification message can be received anytime during an active MZSTART session. 
+
+<CodeBlock language="javascript" title="FOTA update URC"  className="responseJet">
+{`
++MZFOTARECEIVE: <receive_sts>,dt:<Epoch-Time>,host:<new-version-no>,hostsize:<file-name - size-in-Bytes>,hostseg:<total-segments>
++MZFOTARECEIVE: <receive_sts>,<segment-number>,<payload-format>,<requested-segment>
++MZDEBUG: <dbg_sts>`}
+</CodeBlock>
+
+
+#### Defined Values
+
+<div className="card">
+    <div className="card__body">
+        <div className="row">
+            <div className="col col--4">
+                `<receive_sts>`
+            </div>
+            <div className="col col--8">
+                Integer Type.
+                <div className="row">
+                    <div className="col col--2">
+                    1
+                    </div>
+                    <div className="col col--10">
+                    New host firmware information received
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col col--2">
+                    2
+                    </div>
+                    <div className="col col--10">
+                    Requested firmware segment received
+                    </div>
+                </div>
+                                <div className="row">
+                    <div className="col col--2">
+                    3
+                    </div>
+                    <div className="col col--10">
+                    Received firmware segment size exceeds limits
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div className="card">
+    <div className="card__body">
+        <div className="row">
+            <div className="col col--4">
+                `<fota data>`
+            </div>
+            <div className="col col--8">
+                String Type. <br/>Max Byte size: 1200B <br/>Accepted Characters: Alphanumeric
+                <div className="row">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div className="card">
+    <div className="card__body">
+        <div className="row">
+            <div className="col col--4">
+                `<dbg_sts>`
+            </div>
+            <div className="col col--8">
+                Integer Type.
+                <div className="row">
+                    <div className="col col--2">
+                    40
+                    </div>
+                    <div className="col col--10">
+                    IoT platform subscription success
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col col--2">
+                    41
+                    </div>
+                    <div className="col col--10">
+                                        IoT platform subscription failed
+                    </div>
+                </div>
+                 </div>
+        </div>
+    </div>
+</div>
+
+#### Usage
+<div className="card">
+    <div className="card__body">
+         <h5>Without Debug Mode</h5>
+         New Firmware available
+        ```jsx
+        +MZFOTARECEIVE: 1,dt:1740104482,host:1.1.5,hostsize:hostappV1.0.2.zip - 223390,hostseg:219
+        ```
+
+        Requested Firmware segment
+        ```jsx
+        +MZFOTARECEIVE: 2,1,A,504b03041400000008001b84545aede14634b3b30100d0f603000b000000633361707056312e302e32cc5d097c94c5159f3d727018220408476113142d2a12ce445136893150149144a4b47577b359482424210997a85912af9aaa7c42c5965602d6ca465b690505b512c05a5ada0a7851b57593a805c2114842b25cdbff9b99dd9d5df643dbfefafb157f9bef7bff3733efcd9b376fce5dab736ebbd568309898fc6762af33039e3fcb15b455e289272849004b673df077381bc662419b83e92e7e761bc29ff10139325fba117fa23c87b0f0a74179c630fd7fd7e49802cf408ec05faeab653a70fe34873dbba562453d58583ea3ccd7761bf2f1a739ec694182d033543fb3fce473fce2e72d2cfc6996cf995f5615d2fbb96394f0e267092a1f7a86f2dd897cb1ec9bff4b94cf5924ef1276f1e2117a86dae1fa92e282eb4b0aaf2b292e5dbcec3a87a3c2593471fce8cab2d16942a724d9c6b933ee62a977bef14adbda6d6fbef7f29e25aee7660e7eeccca9c7cd5207834813f48938c53f34a5dd665a0a562539cc66c29ec6e719d261e9d5176e7bf5e96d49fbff3ae48da9739ff718fe79acf017b5b1150fdf36e4daccde2facefff9739512b1f94d18b25a747c307b1fa3c7318d60cbfe81ba50c439fe8f87934d7e551f091a6e8e97fa453cecb3af8953da2977f85397afa845ed1d377b0e8e9e7e994d3161b1ddfd0
+        ```
+    </div>
+</div>
+<div className="card">
+    <div className="card__body">
+            <h5>With Debug Mode</h5>
+            FOTA subscribe
+           ```jsx
+            +MZSTART: 0
+            +MZDEBUG: 40
+           ```
+    </div>
+</div>
+
+### FOTA - Request firmware segment
+This command is used to request the firmware segment from monoZ:Link.
+
+<CodeBlock language="javascript" title="Execution command">
+{`MZREQFOTASEG=<segment>`}
+</CodeBlock>
+<CodeBlock language="javascript" title="FOTA update URC"  className="responseJet">
+{`MZOK/MZFAIL
++MZREQFOTASEG: <send_sts> 
++MZDEBUG: <dbg_sts>`}
+</CodeBlock>
+
+
+#### Defined Values
+
+<div className="card">
+    <div className="card__body">
+        <div className="row">
+            <div className="col col--4">
+                `<segment>`
+            </div>
+            <div className="col col--8">
+                String Type. <br/>Max Byte size: 1B <br/>Accepted Characters: Numeric
+                <div className="row">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div className="card">
+    <div className="card__body">
+        <div className="row">
+            <div className="col col--4">
+                `<send_sts>`
+            </div>
+            <div className="col col--8">
+                Integer Type.
+                <div className="row">
+                    <div className="col col--2">
+                    0
+                    </div>
+                    <div className="col col--10">
+                    Request send success
+                    </div>
+                </div>
+               <div className="row">
+                    <div className="col col--2">
+                    1
+                    </div>
+                    <div className="col col--10">
+                    Request send failed
+                    </div>
+                </div>
+                 <div className="row">
+                    <div className="col col--2">
+                    2
+                    </div>
+                    <div className="col col--10">
+                    Invalid segment
+                    </div>
+                </div>                
+                 </div>
+                 </div>
+    </div>
+</div>
+
+<div className="card">
+    <div className="card__body">
+        <div className="row">
+            <div className="col col--4">
+                `<dbg_sts>`
+            </div>
+            <div className="col col--8">
+                Integer Type.
+                <div className="row">
+                    <div className="col col--2">
+                    30
+                    </div>
+                    <div className="col col--10">
+                    Data send success
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col col--2">
+                    31
+                    </div>
+                    <div className="col col--10">
+                    Data send retransmitting
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col col--2">
+                    32
+                    </div>
+                    <div className="col col--10">
+                    Data send failed
+                    </div>
+                </div>
+                 </div>
+        </div>
+    </div>
+</div>
+
+#### Maximum Response Time
+<table>
+    <tr>
+        <td>MZOK/MZFAIL</td>
+        <td>2 seconds</td>
+    </tr>
+    <tr>
+        <td>+MZREQFOTASEG/+MZDEBUG</td>
+        <td>20 seconds</td>
+    </tr>
+</table>
+
+#### Usage
+<div className="card">
+    <div className="card__body">
+         <h5>Without Debug Mode</h5>
+         ```jsx
+        MZREQFOTASEG=1
+        MZOK
+        +MZREQFOTASEG: 0
+        ```
+         </div>
+</div>
+<div className="card">
+    <div className="card__body">
+            <h5>With Debug Mode</h5>
+            ```jsx
+             MZREQFOTASEG=1
+             MZOK
+             +MZDEBUG: 30
+             +MZREQFOTASEG: 0
+           ```
+    </div>
+</div>
+
+
 ### Special URC
 monoZ:Jet has 2 special URCs namely MZFAIL and MZERROR as described below.
 
