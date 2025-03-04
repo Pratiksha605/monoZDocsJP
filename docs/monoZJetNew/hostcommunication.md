@@ -1,11 +1,16 @@
 ---
-title: Host Communication 
+title: ホスト通信
 sidebar_position: 3
 ---
-monoZ:Jet utilizes USB or cascade UART for Host to module communication and comes preconfigured with application firmware that automates complex network and platform communication processes.
+ホストはmonoZ:JetとUSBもしくはUARTを介して通信することが出来ます。\
+複雑なネットワーク接続手順やプラットフォーム通信プロトコルの設定を、\
+monoZ:Jetは自動で行ってくれます。
 
-### USB mode
-monoZ:Jet can be accessed via USB by connecting a USB-C cable between the host and the module. This provides both power and a data channel for monoZ:Jet. When using USB as the communication channel, ensure that the UART cascade pins are not connected.
+### USB接続
+ホストとmonoZ:JetをUSB-C ケーブルで接続するとUSB経由で通信が行えます。\
+USBはmonoZ:Jet の主電源の役割も果たします。\
+USBで通信する場合は、J1コネクタのUARTピンが接続されていないことを確認してください。
+
 
 <div className="card">
     <div className="card__body">
@@ -46,14 +51,16 @@ monoZ:Jet can be accessed via USB by connecting a USB-C cable between the host a
     </div>
 </div>
 
-### Cascade UART mode
-monoZ:Jet can be switched to UART mode by one of the following methods,
-    Method 1: Cutoff the optional part of the monoZ:Jet board. This is a permanent switch and it is ideal for space constrained usecases. 
+### PCB端子接続
+monoZ:JetはPCB端子接続をサポートしています。端子接続するには以下の2種類の方法が用意されています。
+
+    方法 1: monoZ:Jetのオプション基板を切り離す方法です。この方法は簡単に行えますが、一度切り離したオプション基板は元に戻せないので注意してください。 
     <img className="img-center" src={require('@site/static/img/quickguide2.png').default} />
-    Method 2: Remove the three resistors shown below to disconnect the communication line between the USB and the processor. In this method monoZ:Jet can be switched back to USB mode by remounting the resistors in their original positions. However, Meritech strictly disclaims any responsibility for hardware issues resulting from modifications to monoZ:Jet, including damage or malfunction caused by improper removal or reinstallation of resistors.
+    方法 2: 以下に示す3つの抵抗を外す方法です。この方法で取り外した抵抗を元の位置につけ直すことでUSB接続を使用することが出来ます。抵抗器の不適切な取り外しや取り付けによる損傷や故障によって生じたハードウェアの問題については一切の責任を負いません。
     <img className="img-center" src={require('@site/static/img/quickguide3.png').default} />
 
-Once hardware is prepared, monoZ:Jet can be accessed via UART by connecting p7,p8 of cascade connector J1 to  RX & TX of the host. This enables UART as the data channel for monoZ:Jet. In UART mode, monoZ:Jet can be powered by connecting p1, p2 of connector J2 to 5V DC power input and GND. 
+J1コネクタのp7、p8をホストのRXとTXに接続することで、ホストとmonoZ:JetはUART 経由で通信が行えます。\
+monoZ:Jetの主電源を確保するためにJ2コネクタのp1はDC5V電源に、p2はGNDに接続してください。
 
 <div className="card">
     <div className="card__body">
@@ -104,7 +111,8 @@ Once hardware is prepared, monoZ:Jet can be accessed via UART by connecting p7,p
     </div>
 </div>
 
-**Caution:**
-<br/>i)	Do not power up monoZ:Jet via USB and 5V cascade VBUS pin at the same time. This may cause monoZ:Jet to fail. The power source may also face overcurrent and potential damage.
-<br/>ii) When in USB mode, the cascade UART pins should remain disconnected from any data source. Transmitting data through the cascade UART while monoZ:Jet is in USB mode may result in signal corruption and potential hardware damage on monoZ:Jet.
+**注意:**
+<br/>i)	monoZ:JetのUSBと5V/VBUSピン経由で同時に電源を入れないでください。monoZ:Jetが正常に動作しない可能性があります。また電源に過電流が発生し故障する可能性がございます。
+<br/>ii) USB接続中はPCB端子接続を切断してください。USB接続中にPCB端子接続を介してデータを受信すると、正常にデータを受信できない可能性があります。またmonoZ:Jetが故障する可能性がございます。
+
 

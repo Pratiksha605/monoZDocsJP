@@ -1,32 +1,43 @@
 ---
-title: Host Communication commands
+title: MZコマンド
 sidebar_position: 3
 ---
 import CodeBlock from '@theme/CodeBlock';  
 import MDXComponents from '@theme-original/MDXComponents';
   
-# MZCommands
+# MZコマンド
 
-### Module Ready URC
-This URC is sent by monoZ:Jet to the host upon successful power-on. monoZ:Jet does not accept command inputs until this URC is sent back to host. If the host does not receive this URC, a hardware reset or power reboot of monoZ:Jet is recommended.
+MZコマンドはmonoZ:Jetで使用される特別なATコマンドです。
+
+### +MZREADY: モデム準備完了
+monoZ:Jetに電源投入後、monoZ:Jetがコマンド入力を受け付けられる状態になると、このURCがホストに送信されます。
+<br/>ホストがこのURCを受信できない場合は、monoZ:JetのHWリセットを行うか、モデムの電源を入れ直すことを推奨します。
+
 
 <CodeBlock language="javascript" title="URC"  className="responseJet">
 {`+MZREADY`}
 </CodeBlock>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>+MZREADY</td>
-        <td>1 second</td>
+        <td>1 秒</td>
     </tr>
   </table>
 
-<b>Note:</b>
-1. If host and monoZ:Jet is powered ON at the same time, then there is a possibility the host may miss the +MZREADY message. 
+<b>注意:</b>
+1. ホストとmonoZ:jETが同時に起動する場合、ホストが+MZREADYのURCを受信できない可能性があります。
 
-### Module Start
-This command initializes the monoZ:Jet module and establish communication with the cellular network and the IoT platform using runtime parameters. If the SIM is not detected, the Band setting is incorrect, or the modem fails to start, an error URC is immediately generated without retries. In the event of a failed network or IoT platform connection, monoZ:Jet will return a failure URC and retry every 5 minutes indefinitely until a successful connection is established. The host can force an exit from this loop through a hardware reset, full sleep, or a power shutdown. Upon +MZSTART:0, host can expect +MZSTART URCs in the event of network or IoT platform disconnection.
+### MZSTART: モデム起動
+このコマンドはmonoZ:Jetを初期化し、設定済みのパラメータに従ってセルラーネットワークおよびIoTプラットフォームとの通信を確立します。
+<br/>`<s_sts`>が0の場合は、セルラーネットワークおよびIoTプラットフォームとの通信を確立したことを表します。
+<br/>`<s_sts`>が1、2のいずれかの場合は、monoZ:Jetは再試行を実施しません。
+<br/>`<s_sts`>が3、4のいずれかの場合は、monoZ:Jetは接続が確立されるまで5分ごとに無限に再試行を実施します。
+<br/>ホストは、HWリセット、Full sleepモード、または電源シャットダウンによってこの無限の再試行を強制的に終了できます。
+
+通信確立後も環境によってネットワークまたはIoTプラットフォームとの通信が切断することがあります。
+<br/>通信の切断が発生すると`<s_sts`>が3、4のいずれかのURCが出力されます。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZSTART `}
@@ -40,7 +51,7 @@ This command initializes the monoZ:Jet module and establish communication with t
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className='row'> 
@@ -179,22 +190,22 @@ This command initializes the monoZ:Jet module and establish communication with t
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZSTART/+MZDEBUG</td>
-        <td>3 minutes</td>
+        <td>3 分</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
-        <h5>Without Debug Mode</h5>
+        <h5>デバッグモードなし</h5>
         Note: Response varies based on network situation.
         <br/>
         
@@ -210,7 +221,7 @@ This command initializes the monoZ:Jet module and establish communication with t
 </div>
 <div className="card">
     <div className="card__body">
-            <h5>With Debug Mode</h5> 
+            <h5>デバッグモードあり</h5> 
             Note: Response varies based on network situation.           
             <br/>
 
@@ -233,13 +244,13 @@ This command initializes the monoZ:Jet module and establish communication with t
     </div>
 </div>
 
-<b> Note: </b>
-1. Reception of FOTA from IoT Platform data to monoZ:Jet  will be enabled upon +MZSTART:0
-2. MZBAND & MZORGID setting cannot be set after MZSTART:0 
+<b>注意: </b>
+1. IoTプラットフォームからmonoZ:JetへのFOTAデータの送信は、`+MZSTART:0`を出力してから始まります。
+2. MZBANDとMZORGIDの設定コマンドはMZSTARTコマンドの前に実行してください。
 
 
-### Firmware Version
-This command reads the current firmware version of monoZ:Jet.
+### MZVERSION: monoZ:Jet ファームウェアバージョン
+このコマンドでmonoZ:Jetの現在のファームウェアバージョンを確認することが出来ます。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZVERSION `}
@@ -252,7 +263,7 @@ This command reads the current firmware version of monoZ:Jet.
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className='row'> 
@@ -266,19 +277,19 @@ This command reads the current firmware version of monoZ:Jet.
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZVERSION</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
                 
@@ -291,8 +302,10 @@ This command reads the current firmware version of monoZ:Jet.
 </div>
 
 
-### Data Send
-This command transmits payload data to the IoT platform. If an internal timeout occurs, monoZ:Jet automatically retries up to three times at the protocol level before returning a data send failure URC to the host. Following a failure, the module disconnects and reconnects to the network and IoT platform to resolve any potential network or platform related issues. 
+### MZSEND: データ送信
+このコマンドでペイロードをIoTプラットフォームに送信します。
+送信タイムアウトが発生した場合、monoZ:Jetは、データ送信失敗URCを出力する前に、プロトコルレベルで最大3回まで自動的に再試行します。
+全ての再試行が失敗したあと、monoZ:JetはセルラーネットワークとIoTプラットフォームの通信を切断して再接続することで、通信経路に存在する潜在的な問題を解決します。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZSEND=<payload> `}
@@ -306,7 +319,7 @@ This command transmits payload data to the IoT platform. If an internal timeout 
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className='row'> 
@@ -411,22 +424,22 @@ This command transmits payload data to the IoT platform. If an internal timeout 
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZSEND/+MZDEBUG</td>
-        <td>20 seconds</td>
+        <td>20 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
-        <h5>Without Debug Mode</h5>
+        <h5>デバッグモードなし</h5>
         <br/>
         Normal case
         ```jsx
@@ -459,7 +472,7 @@ This command transmits payload data to the IoT platform. If an internal timeout 
 </div>
 <div className="card">
     <div className="card__body">
-            <h5>With Debug Mode</h5>            
+            <h5>デバッグモードあり</h5>            
             <br/>
 
             ```jsx
@@ -471,8 +484,8 @@ This command transmits payload data to the IoT platform. If an internal timeout 
     </div>
 </div>
 
-### Downlink Data
-This command enables monoZ:Jet to open downlink session with IoT platfom. Once enabled, the session remains active until a power-off, hardware reset, or full sleep occurs. In the event of a network disconnection and reconnection, the module automatically re-enables itself without requiring host intervention.
+### MZRECEIVE: データ受信
+このコマンドでmonoZ:JetはIoTプラットフォームとのダウンリンクセッションを確立します。HWリセット、Full sleepモード、または電源シャットダウンが発生するまでは、ネットワーク切断などによりセッションが切断されると、monoZ:Jetはセッションの再確立を自動的に試みます。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZRECEIVE `}
@@ -487,7 +500,7 @@ This command enables monoZ:Jet to open downlink session with IoT platfom. Once e
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className='row'> 
@@ -583,22 +596,22 @@ This command enables monoZ:Jet to open downlink session with IoT platfom. Once e
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZRECEIVE/+MZDEBUG</td>
-        <td>5 seconds</td>
+        <td>5 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
-        <h5>Without Debug Mode</h5>
+        <h5>デバッグモードなし</h5>
         <br/>
         ```jsx
         MZRECEIVE
@@ -611,7 +624,7 @@ This command enables monoZ:Jet to open downlink session with IoT platfom. Once e
 </div>
 <div className="card">
     <div className="card__body">
-            <h5>With Debug Mode</h5>            
+            <h5>デバッグモードあり</h5>            
             <br/>
             ```jsx
             MZRECEIVE
@@ -623,8 +636,8 @@ This command enables monoZ:Jet to open downlink session with IoT platfom. Once e
     </div>
 </div>
 
-### Module Sleep
-This command puts the monoZ:Jet module to different Low Power Modes(LPM).
+### MZSLEEP: スリープモード
+このコマンドはmonoZ:Jetを様々な低消費電力モードに移行させることが出来ます。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZSLEEP=<Key_val> `}
@@ -638,7 +651,7 @@ This command puts the monoZ:Jet module to different Low Power Modes(LPM).
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className='row'> 
@@ -652,7 +665,7 @@ This command puts the monoZ:Jet module to different Low Power Modes(LPM).
                     0
                     </div>
                     <div className="col col--10">
-                    Full sleep mode. monoZ:Jet will go to full deep sleep mode within 5 seconds of sending back +MZSLEEP: 0 URC to the host. monoZ:Jet cannot take MZ commands in this mode and wake up is triggered by raising HOST to BOARD_WKP(P407) Pin to HIGH or via power off/on.
+                    Full sleep mode. monoZ:Jet will go to full deep sleep mode within 5 秒 of sending back +MZSLEEP: 0 URC to the host. monoZ:Jet cannot take MZ commands in this mode and wake up is triggered by raising HOST to BOARD_WKP(P407) Pin to HIGH or via power off/on.
                     </div>
                 </div>
                 <div className="row">
@@ -741,22 +754,22 @@ This command puts the monoZ:Jet module to different Low Power Modes(LPM).
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZSLEEP/+MZDEBUG</td>
-        <td>10 seconds</td>
+        <td>10 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
-        <h5>Without Debug Mode</h5>
+        <h5>デバッグモードなし</h5>
         <br/>
         
         ```jsx
@@ -769,7 +782,7 @@ This command puts the monoZ:Jet module to different Low Power Modes(LPM).
 </div>
 <div className="card">
     <div className="card__body">
-            <h5>With Debug Mode</h5>            
+            <h5>デバッグモードあり</h5>            
             <br/>
 
             ```jsx
@@ -781,13 +794,14 @@ This command puts the monoZ:Jet module to different Low Power Modes(LPM).
     </div>
 </div>
 
-<b>Note:</b>
-1. monoZ:Jet stores the last connected network information during the full sleep process. To speed up network connection after the next power-on, it is recommended to execute MZSLEEP=0 before powering off the monoZ:Jet. 
-2. If MZRECEIVE was enabled on the monoZ:Jet before Semi sleep or Light sleep, then monoZ:Jet automatically enables the session after wakeup.
-3. In the case of Full Sleep, the user must reenable the downlink session upon wakeup.
+<b>注意:</b>
+1. monoZ:JetはFull Sleep実行中に最後に接続したネットワーク情報を保存します。次回の電源投入後のネットワーク接続を高速化するには、monoZ:Jetの電源を切る前に MZSLEEP=0を実行することを推奨します。
+2. MZRECEIVEを実行している場合、Semi SleepまたはLight Sleepからウェイクアップ後、monoZ:Jetはセッションの再確立を自動的に試みます。
+3. MZRECEIVEを実行している場合でも、Full Sleepからウェイクアップ後、monoZ:Jetはセッションの再確立を自動的に行わないので、必要な場合はMZRECEIVEを実行する必要があります。
 
-### Network Time
-This command is used to capture and return the real time clock.
+### MZTIME: システムクロック
+このコマンドは通信モデムのシステムクロックを読み取るために使用されます。
+<br/>システムクロックの更新にはネットワーク接続を必要とします。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZTIME`}
@@ -801,7 +815,7 @@ This command is used to capture and return the real time clock.
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className='row'> 
@@ -831,19 +845,19 @@ This command is used to capture and return the real time clock.
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZTIME</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
               
@@ -855,8 +869,8 @@ This command is used to capture and return the real time clock.
     </div>
 </div>
 
-### Network Status
-This command is used to read the status of connected network. 
+### MZSTATUS: ネットワークステータス
+このコマンドは接続されたネットワークのステータスを読み取るために使用されます。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZSTATUS`}
@@ -868,7 +882,7 @@ This command is used to read the status of connected network.
 +MZNWSTATUS: <r_sts>`}
 </CodeBlock>
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className="row">
@@ -1002,19 +1016,19 @@ SINR. Values are in 1/5th of a dB. Range: 0–250, which translates to -20dB to 
 </div>
 
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZNWSTATUS</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
         
@@ -1028,8 +1042,9 @@ SINR. Values are in 1/5th of a dB. Range: 0–250, which translates to -20dB to 
     </div>
 </div>
 
-### Debug
-This command enables or disables debugging mode on monoZ:Jet. When enabled, the module generates additional URCs, indicated by +MZDEBUG, for the corresponding MZ commands.
+### MZDEBUG: デバッグモード
+このコマンドはmonoZ:Jetのデバッグモードを有効/無効にします。
+<br/>デバッグモードを有効にすると、+MZDEBUGで示される追加のURCが出力されるようになります。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZDEBUG=<key_val>`}
@@ -1041,7 +1056,7 @@ This command enables or disables debugging mode on monoZ:Jet. When enabled, the 
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className="row">
@@ -1071,16 +1086,16 @@ This command enables or disables debugging mode on monoZ:Jet. When enabled, the 
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
    
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
                
@@ -1092,8 +1107,9 @@ This command enables or disables debugging mode on monoZ:Jet. When enabled, the 
     </div>
 </div>
 
-### Set Org ID
-This command configures the Organization ID (ORGID) required for connecting to the monoZ:Link IoT platform. The ORGID is a one-time setting and does not need to be reconfigured after each power-on cycle. This setting must be done before executing MZSTART.
+### MZORGID: ORG ID設定
+このコマンドは、monoZ:Link IoT プラットフォームへの接続に必要な組織ID(ORG ID) を設定します。
+<br/>ORG IDは不揮発性メモリに保存されるため、電源ONするたびに再設定する必要はありません。この設定はMZSTARTを実行する前に行ってください。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZORGID="<org_id>"`}
@@ -1106,7 +1122,7 @@ This command configures the Organization ID (ORGID) required for connecting to t
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className="row">
@@ -1180,19 +1196,19 @@ This command configures the Organization ID (ORGID) required for connecting to t
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZORGID</td>
-        <td>5 seconds</td>
+        <td>5 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
         
@@ -1204,8 +1220,11 @@ This command configures the Organization ID (ORGID) required for connecting to t
     </div>
 </div>
 
-### Set Band
-This command configures the BAND setting on monoZ:Jet for cellular network connectivity. By default, all supported bands are enabled, and during MZSTART, the module attempts to connect to the network in ascending order of the configured band. This setting must be done before executing MZSTART.
+### MZBAND: Band設定
+このコマンドは、セルラーネットワーク接続に使用する周波数帯(Band)をmonoZ:Jetに設定します。
+<br/>デフォルトではサポートされているすべてのBandが設定されています。
+<br/>MZSTARTの処理中にmonoZ:Jetは設定されたBandを昇順でスキャンしてネットワークへの接続を試みます。
+<br/>Band設定は不揮発性メモリに保存されるため、電源ONするたびに再設定する必要はありません。この設定はMZSTARTを実行する前に行ってください。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZBAND=<GSM_bandval>,<eMTC_bandval>,<NB_IoT_bandval>`}
@@ -1218,7 +1237,7 @@ This command configures the BAND setting on monoZ:Jet for cellular network conne
 
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className="row">
@@ -1649,19 +1668,19 @@ This command configures the BAND setting on monoZ:Jet for cellular network conne
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZBAND</td>
-        <td>5 seconds</td>
+        <td>5 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
         
@@ -1671,8 +1690,10 @@ This command configures the BAND setting on monoZ:Jet for cellular network conne
         ```
     </div>
 </div>
-Note:
-1. The BAND setting is crucial for minimizing network connection time. Since the bands supported by the 1NCE network vary by country, we recommend configuring the appropriate band settings based on the device's target region of operation(see table). Contact us for tailored recommendations for your specific country or region.
+<b>注意: </b>
+1. monoZ:Jetは世界各国で運用されているBandとの接続性確保のために多くのBandに対応しています。
+<br/>IoTデバイスを運用する対象地域 (表を参照) に基づいて適切なBandを設定することで、不要なBandのスキャン時間を減らすことが出来ます。
+<br/>特定の国または地域に合わせた推奨設定についてお困りの場合は弊社までお問い合わせください。
 
 <table>
     <tr>
@@ -1693,8 +1714,10 @@ Note:
     </tr>
 </table>
 
-### FOTA - Send FOTA message
-This command allows the host to set a firmware update status message for the OTA server after successful monoZ:Jet initialization via MZSTART. It is typically used to report the latest host firmware version or the outcome of an OTA update. The MZSTARTMSG command can only be executed before MZSTART, and the configured message will be sent immediately to the FOTA server upon succesful platform connection.
+### MZSTARTMSG: FOTAメッセージ設定
+このコマンドは、FOTAサーバー向けのメッセージを設定することができます。
+<br/>MZSTARTMSGコマンドはMZSTARTを実行前にのみ実行でき、設定されたメッセージはIoTプラットフォーム接続が成功したあとにFOTAサーバーに送信されます。
+<br/>メッセージの用途としては、現在のホストファームウェアバージョンを通知すること、もしくはFOTA更新の結果を通知すること、あるいはその両方を通知するために使用されす。
 
 
 <CodeBlock language="javascript" title="Execution command">
@@ -1707,7 +1730,7 @@ This command allows the host to set a firmware update status message for the OTA
 </CodeBlock>
 
 
-#### Defined Values
+#### 定義値
 <div className="card">
     <div className="card__body">
         <div className='row'> 
@@ -1783,19 +1806,19 @@ This command allows the host to set a firmware update status message for the OTA
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZMZSTATMSG</td>
-        <td>5 seconds (from MZSTART:0)</td>
+        <td>5 秒 (from MZSTART:0)</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
         ```jsx
@@ -1808,8 +1831,9 @@ This command allows the host to set a firmware update status message for the OTA
          </div>
 </div>
 
-### FOTA - Update URC
-monoZ:Jet pass the FOTA update availability notification & FOTA payload to the host using this URC. New FOTA update notification message can be received anytime during an active MZSTART session. 
+### FOTA ファームウェア更新情報URC
+monoZ:JetはこのURCを使用して、最新FWのVersionの情報と、FOTAペイロードをホストに通知します。
+<br/>MZSTARTを実行してIoTプラットフォームとの接続が有効な間は、いつでも新しいFOTA更新URCを受信できます。
 
 <CodeBlock language="javascript" title="FOTA update URC"  className="responseJet">
 {`
@@ -1819,7 +1843,7 @@ monoZ:Jet pass the FOTA update availability notification & FOTA payload to the h
 </CodeBlock>
 
 
-#### Defined Values
+#### 定義値
 
 <div className="card">
     <div className="card__body">
@@ -1902,10 +1926,10 @@ monoZ:Jet pass the FOTA update availability notification & FOTA payload to the h
     </div>
 </div>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
-         <h5>Without Debug Mode</h5>
+         <h5>デバッグモードなし</h5>
          New Firmware available
         ```jsx
         +MZFOTARECEIVE: 1,dt:1740104482,host:1.1.5,hostsize:hostappV1.0.2.zip - 223390,hostseg:219
@@ -1919,7 +1943,7 @@ monoZ:Jet pass the FOTA update availability notification & FOTA payload to the h
 </div>
 <div className="card">
     <div className="card__body">
-            <h5>With Debug Mode</h5>
+            <h5>デバッグモードあり</h5>
             FOTA subscribe
            ```jsx
             +MZSTART: 0
@@ -1928,8 +1952,11 @@ monoZ:Jet pass the FOTA update availability notification & FOTA payload to the h
     </div>
 </div>
 
-### FOTA - Request firmware segment
-This command is used to request the firmware segment from monoZ:Link.
+### FOTA ファイルダウンロード
+このコマンドは、monoZ:Linkからファームウェアファイルのダウンロードを要求するために使用されます。
+<br/>1025byte以上のファイルサイズはセグメントファイルに分割されてダウンロードされます。
+<br/>MZFOTARECEIVEのURCで、hostsegで示されるセグメント数に分割されます。
+<br/>1から順番にセグメントを指定して、すべてのセグメントをダウンロードしてください。
 
 <CodeBlock language="javascript" title="Execution command">
 {`MZREQFOTASEG=<segment>`}
@@ -1941,7 +1968,7 @@ This command is used to request the firmware segment from monoZ:Link.
 </CodeBlock>
 
 
-#### Defined Values
+#### 定義値
 
 <div className="card">
     <div className="card__body">
@@ -2032,22 +2059,22 @@ This command is used to request the firmware segment from monoZ:Link.
     </div>
 </div>
 
-#### Maximum Response Time
+#### 最大応答時間
 <table>
     <tr>
         <td>MZOK/MZFAIL</td>
-        <td>2 seconds</td>
+        <td>2 秒</td>
     </tr>
     <tr>
         <td>+MZREQFOTASEG/+MZDEBUG</td>
-        <td>20 seconds</td>
+        <td>20 秒</td>
     </tr>
 </table>
 
-#### Usage
+#### 使用例
 <div className="card">
     <div className="card__body">
-         <h5>Without Debug Mode</h5>
+         <h5>デバッグモードなし</h5>
          ```jsx
         MZREQFOTASEG=1
         MZOK
@@ -2057,7 +2084,7 @@ This command is used to request the firmware segment from monoZ:Link.
 </div>
 <div className="card">
     <div className="card__body">
-            <h5>With Debug Mode</h5>
+            <h5>デバッグモードあり</h5>
             ```jsx
              MZREQFOTASEG=1
              MZOK
@@ -2067,18 +2094,21 @@ This command is used to request the firmware segment from monoZ:Link.
     </div>
 </div>
 
-### Special URC
-monoZ:Jet has 2 special URCs namely MZFAIL and MZERROR as described below.
+### ERROR URC
+monoZ:JetにはMZFAILとMZERRORという2種類のエラーURCがあります。
+<br/>MZFAILは、MZコマンドによって発生する処理に対するエラーを表しています。
+<br/>MZERRORは、MZコマンド自体に対するエラーを表しています。
+
 
 <table>
     <tr>
         <td>MZFAIL</td>
-        <td><ul><li>MZFAIL URC shall be returned for a MZ command if any prior MZ Command is in progress and its respective URC has not been sent back to host</li>
-        <li>MZFAIL shall be returned for MZ commands ***(MZTIME, MZNWSTATUS, MZSEND, MZRECEIVE)*** when executed before succesful ***MZSTART***.</li>
-        <li>MZFAIL shall be returned for MZ commands ***(MZBAND, MZORGID)*** when executed after succesful ***MZSTART***.</li></ul></td>
+        <td><ul><li>他のMZコマンドの処理が進行中に、新たにMZコマンドを実行した場合は、***MZFAIL*** URCが返されます。</li>
+        <li>***MZSTART*** が完了する前に MZコマンド ***(MZTIME、MZNWSTATUS、MZSEND、MZRECEIVE)*** を実行すると、MZFAILが返されます。</li>
+        <li>***MZSTART*** 実行後、MZ コマンド ***(MZBAND、MZORGID)*** を実行すると、MZFAILが返されます。</li></ul></td>
     </tr>
     <tr>
-        <td>MZFAIL</td>
-        <td><ul><li>**MZERROR** URC shall be returned for any invalid MZ command </li></ul></td>
+        <td>MZERROR</td>
+        <td><ul><li>無効なMZコマンドに対しては ***MZERROR*** URCが返されます。 </li></ul></td>
     </tr>
 </table>
