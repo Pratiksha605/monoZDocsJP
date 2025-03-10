@@ -1,6 +1,6 @@
 ---
 title: Get SIM Enable/Disable Status
-sidebar_position: 3
+sidebar_position: 5
 ---
 <div className="row">
     <div className="col col--7">

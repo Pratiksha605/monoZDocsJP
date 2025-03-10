@@ -1,11 +1,11 @@
 ---
-title: SIM Reset Request
-sidebar_position: 4
+title: PUT SIMリセット
+sidebar_position: 6
 ---
-<div className="row">
-    <div className="col col--7">
+<!-- <div className="row">
+    <div className="col col--7"> -->
         <p className="Get-link"><span className="get">PUT</span> <em>https://link.monoz.io/api/v1/{OrganizationId}/Sim/Reset</em></p>
-        Initiates the process of SIM connectivity reset and returns ok if the process was successfully started.
+        SIM接続リセットのプロセスを開始し、プロセスが正常に開始された場合はOKを返します。
 
         ##### Args
         <div className="card">
@@ -67,8 +67,8 @@ sidebar_position: 4
                 </summary>
             </div>
         </div>
-    </div>
-    <div className="col col--5">
+    <!-- </div>
+    <div className="col col--5"> -->
         <div className="sticky">
             ##### cURL
             ```jsx
@@ -88,5 +88,5 @@ sidebar_position: 4
             }
             ```
         </div>
-    </div>
-</div>
+    <!-- </div>
+</div> -->

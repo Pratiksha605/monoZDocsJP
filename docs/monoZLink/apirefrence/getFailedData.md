@@ -1,11 +1,15 @@
 ---
-title: Get Failed Data
-sidebar_position: 6
+title: POST 転送失敗データ取得
+sidebar_position: 8
 ---
-<div className="row">
-    <div className="col col--7">
+<!-- <div className="row">
+    <div className="col col--7"> -->
         <p className="Get-link"><span className="get">POST</span> <em>https://link.monoz.io/api/v1/{Org-Id}/FailedData</em></p>
-        This API is available only for users with the database feature. When database is enabled, monoZ:Link store the data whose data push was failed due to various reasons under FAILED DATA. This Failed data can be retrieved using the GET FAILED Data API. Users must ensure that the data is retrieved using start and end timestamp and it is important to call this API in a way to avoid getting the same data packets repeatedly. We recommend usage of this API once in 4hours upto once per day depending on the incoming data frequency. Note that monoZ:Link stores the data in a NoSQL database, hence standard RDBMS query techniques might not apply.
+        このAPIはデータベース機能を契約されているユーザーのみが利用することが出来ます。
+        データベース機能を契約されていると、monoZ:Linkは様々な理由によりデータプッシュが失敗したデータをFAILED DATAとして保存します。このデータは、FAILED Data APIを使用して取得することができます。
+        ユーザーは取得したい時刻範囲を指定してデータを取得する必要がありますが、指定した時刻範囲によってはデータベースの更新が完了していないために、指定した時刻範囲のデータを全て取得できないことがあります。
+        データの取りこぼしを避けるためには、取得済みのデータのうち最新のタイムスタンプを、時刻範囲の開始時刻に指定してAPIを呼び出してください。
+        受信データの頻度に応じて、このAPIを4時間に1回から1日に1回まで使用することを推奨しています。
 
         ##### Args
         <div className="card">
@@ -91,8 +95,8 @@ sidebar_position: 6
                 </summary>
             </div>
         </div>
-    </div>
-    <div className="col col--5">
+    <!-- </div>
+    <div className="col col--5"> -->
         <div className="sticky">
             ##### cURL
             ```jsx
@@ -121,5 +125,5 @@ sidebar_position: 6
             }
             ```
         </div>
-    </div>
-</div>
+    <!-- </div>
+</div> -->

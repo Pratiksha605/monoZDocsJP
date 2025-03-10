@@ -1,11 +1,14 @@
 ---
-title: Send Downlink Message
-sidebar_position: 7
+title: POST ダウンリンクメッセージ送信
+sidebar_position: 9
 ---
-<div className="row">
-    <div className="col col--7">
+<!-- <div className="row">
+    <div className="col col--7"> -->
         <p className="Get-link"><span className="get">POST</span> <em>https://link.monoz.io/api/v1/{Org-Id}/Publish/Message</em></p>
-        This API can be used to send a downlink message to the connected device. The default topic for downlink message shall be published to /< ORGID>/< ICCID>/sub
+        このAPIは接続されたデバイスにダウンリンクメッセージを送信するために使用されます。
+        Topicに何も指定しないと、<b>\/\< ORGID\>\/\<ICCID\>\/sub</b> にデータがPublishされます。
+        Topicに「\/ABC」を指定した場合は、<b>\/\<ORGID\>\/\<ICCID>\/sub\/ABC</b> にデータがPublishされます。
+
 
         ##### Args
         <div className="card">
@@ -20,7 +23,8 @@ sidebar_position: 7
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>Topic</code></div>
-                    <div className="col col--8">Topic can be empty or multiple but must start with a slash (/). For example: /Name1/Name2/.. </div>
+                    <div className="col col--8">Topic can be empty or multiple but must start with a slash (/). For example: "/Name1/Name2/..".
+                    <br/>Max length is 512 bytes with including default topc "\/\< ORGID\>\/\<ICCID\>\/sub".</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>QoS</code></div>
@@ -28,7 +32,8 @@ sidebar_position: 7
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>Message</code></div>
-                    <div className="col col--8">Downlink message</div>
+                    <div className="col col--8">Downlink message. Range is 1-4096 bytes.
+                    <br/>monoZJet max message length is 1024 bytes.</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>Format</code></div>
@@ -91,8 +96,8 @@ sidebar_position: 7
                 </summary>
             </div>
         </div>
-    </div>
-    <div className="col col--5">
+    <!-- </div>
+    <div className="col col--5"> -->
         <div className="sticky">
             ##### cURL
             ```jsx
@@ -116,5 +121,5 @@ sidebar_position: 7
             }
             ```
         </div>
-    </div>
-</div>
+    <!-- </div>
+</div> -->

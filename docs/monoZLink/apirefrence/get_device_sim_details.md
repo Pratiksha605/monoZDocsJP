@@ -1,12 +1,12 @@
 ---
-title: Get Device & SIM Details
-sidebar_position: 1
+title: GET デバイス情報/SIM情報
+sidebar_position: 3
 ---
 
-<div className="row">
-    <div className="col col--7">
+<!-- <div className="row">
+    <div className="col col--7"> -->
         <p className="Get-link"><span className="get">GET</span> <em>https://link.monoz.io/api/v1/{ORG-ID}/Device/Sim/Detail/{ICCID}</em></p>
-        Returns the device & sim details & data consumed by the sim for last 30 days from current date. 
+        デバイスとSIMの詳細情報および、リクエストした月のデバイス使用状況のデータを返します。
         
         ##### Args
         <div className="card">
@@ -108,8 +108,8 @@ sidebar_position: 1
                 </summary>
             </div>
         </div>
-    </div>
-    <div className="col col--5">
+    <!-- </div>
+    <div className="col col--5"> -->
         <div className="sticky">
             ##### cURL
             ```jsx
@@ -125,12 +125,12 @@ sidebar_position: 1
                 "Data": {
                     "Name": "Device name as registeres in monoZ:Link",
                     "ICCID": "Unique device ID as registered in monoZ:Link",
-                    "IMEILock": "Flag that indicates if SIM is locked to the current device IMEI.",
                     "ActivationDate": "The date when the SIM card was activated",
-                    "ExpiryDate": "The date when the SIM card shall be expired",
-                    "Status": "Status of the SIM/Device. A SIM can be enabled (active) or disabled (deactivated)",
                     "MessageCount": "Total number of succesful uplink messages from the device",
                     "DLMessageCount": "Total number of Downlink messages from monoZ:Link to device",
+                    "IMEILock": "Flag that indicates if SIM is locked to the current device IMEI.",
+                    "ExpiryDate": "The date when the SIM card shall be expired",
+                    "Status": "Status of the SIM/Device. A SIM can be enabled (active) or disabled (deactivated)",
                     "Volume": "The remaining data volume of the SIM/device"
                     "CreatedDate": "Date of regisration of device in monoZ:Link",
                     "UpdatedDate": "Date of last update of the device in monoZ:Link"
@@ -138,5 +138,5 @@ sidebar_position: 1
             }
             ```
         </div>
-    </div>
-</div>
+    <!-- </div>
+</div> -->

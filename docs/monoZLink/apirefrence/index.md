@@ -3,14 +3,16 @@ title: monoZ:Link API
 sidebar_position: 4
 ---
 
-### Introduction
+### はじめに
 
-The monoZ:Link is service which receives data in various supported protocols it then transforms the protocol and pushes the data to the receiver in the destination protocol. The service provides closed network security on the source side, handles protocol translation to take advantage of low data usage of an unsecured network at the source side while using the secured protocols on the destination side.
-The document describes the REST APIs exposed by the monoZ:Link service.
+monoZ:Linkは、サポートされている様々なプロトコルでデータを受信し、プロトコル変換してデータを転送するサービスです。
+<br/>このサービスは、受信プロトコル側ではセキュアネットワークを提供することで、オーバーヘッドの少ない軽量なデータを扱うことが出来ます。
+<br/>送信プロトコル側ではセキュリティ保護されたプロトコルで安全なデータ転送を実現します。
+<br/>このドキュメントでは、monoZ:Linkサービスによって公開されているREST APIについて説明します。
 
-### Terminology
+### 用語
 
-The table below describes the standard terminology used throughout this API Documentation:
+以下の表は、このAPIドキュメント全体で使用される用語について説明しています。
 
 <table>
 <tr>
@@ -55,7 +57,8 @@ This is standard API Key implementation and the header needs to be X-API-Key. He
 
 ### REST API Description
 
-The following are the REST APIs and their usages. In the below API description we will use the sample Instance, Version & Organization ID as shown in the example in section 3 above. They will be:
+REST APIとその使用方法を解説します。
+<br/>下記の表に示されているインスタンス、バージョン、組織ID、ICCIDを使用して説明します。
 
 <table>
     <tr>
@@ -70,32 +73,55 @@ The following are the REST APIs and their usages. In the below API description w
         <td>Organization ID: </td>
         <td>mti</td>
     </tr>
+    <tr>
+        <td>ICCID: </td>
+        <td>1234567890</td>
+    </tr>
 </table>
 
-We will use a sample ICCID and dummy API Key for authentication as mentioned in section 3.1.
-
-##### ICCID: 1234567890
-
-##### API Key:
+APIリクエストには下記のHTTPヘッダーを組み合わせて使用します。
 
 <table>
     <tr>
-        <td>Key: </td>
-        <td>X-API-Key</td>
+        <td><b>Header Name</b> </td>
+        <td><b>Header Value</b></td>
     </tr>
     <tr>
-        <td>Value: </td>
-        <td>abcdefgh123456</td>
+        <td>Content-Type </td>
+        <td>application/json </td>
+    </tr>
+    <tr>
+        <td>X-API-Key </td>
+        <td>exampleapikeyabcdefgh123456</td>
+    </tr>
+        <tr>
+        <td>Authorization </td>
+        <td>Bearer exampleauthabcdefgh123456</td>
     </tr>
 </table>
 
-We will use cURL Command to show sample usage and we will show some sample data in API call return and explain the return data as well as any arguments to the API call.
-Every API returns a JSON object as the response. The JSON object returned with each API is described in the sections below. Every JSON object contains a standard response format consisting of:
+cURLコマンドでAPIリクエストを実行する方法と、想定されるいくつかの戻り値について各APIのセクションで解説します。
+<br/>各APIで返される応答結果については各APIのセクションで詳しく説明しますが、共通している応答規則について説明します。
+<br/>すべてのAPIの応答結果には、JSON形式のResponse bodyが含まれていて、下記のkeyが含まれます。
 
-<ul>
-<li>Error: Has a value of True/False denoting whether there was any error in processing the request.</li>
-<li>Message: A message describing what was the error if any.</li>
-<li>StatusCode: The standard HTTP Response Status Code.</li>
-<li>Data: The optional node where a data structure specific to the API is added.</li>
-</ul>	
-Every record is associated with an Organization hence each API call needs the Organization ID to be provided. The.g.,ET APIs take the Organization ID in URL Path while the PUT/POST APIs take them as part of request body.
+<table>
+<tr>
+<td>Error:</td>
+<td>HTTPステータスコードのエラーとは別に、リクエストされた処理の実行中にエラーがあったかどうかを示します。
+    <br/>値はbooleanで表現され、Trueはエラーあり、Falseはエラーなしを示します</td>
+</tr>
+<tr>
+<td>Message:</td>
+<td>HTTPステータスエラー、プロセスエラーの原因説明が記載されます。エラーがない場合はFetchSuccessと記載されます。</td>
+</tr>
+<tr>
+<td>StatusCode:</td>
+<td>標準のHTTPステータスコードを示します。</td>
+</tr>
+<tr>
+<td>Data:</td>
+<td>APIリクエストで要求したデータ本体が含まれます。各APIごとに異なるデータ構造を持つため詳細は各APIセクションを確認してください。</td>
+</tr>
+</table>
+
+すべてのレコードは組織に紐づけられているため、各API呼び出しには組織IDを指定する必要があります。基本的にURLパスに組織IDしてAPIリクエストを実行します。
