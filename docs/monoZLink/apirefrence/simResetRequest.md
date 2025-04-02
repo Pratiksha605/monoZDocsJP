@@ -12,11 +12,11 @@ sidebar_position: 6
             <div className="card__body">
                 <div className="row mb-2">
                     <div className="col col--4"><code>ORG-ID</code></div>
-                    <div className="col col--8">The unique ID assigned to your organisation</div>
+                    <div className="col col--8">組織ごとにユニークなIDです。</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>ICCID</code></div>
-                    <div className="col col--8">Unique ICCID of target device</div>
+                    <div className="col col--8">ICCIDは対象のデバイス（SIM）ごとにユニークに割り振られるIDです。</div>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@ sidebar_position: 6
                 </summary>
             </div>
         </div>
-    <!-- </div>
+<!-- </div>
     <div className="col col--5"> -->
         <div className="sticky">
             ##### cURL
@@ -88,5 +88,5 @@ sidebar_position: 6
             }
             ```
         </div>
-    <!-- </div>
+<!-- </div>
 </div> -->

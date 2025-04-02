@@ -2,8 +2,9 @@
 title: Enable/Disable SIM
 sidebar_position: 4
 ---
+content commented. hide page
 
-<div className="row">
+<!-- <div className="row">
     <div className="col col--7">
         <p className="Get-link"><span className="get">PUT</span> <em>https://link.monoz.io/api/v1/{OrganizationId}/Sim/Enable</em></p>
         Enables or disables a SIM. A disabled SIM is deactivated and cannot be used.
@@ -91,4 +92,4 @@ sidebar_position: 4
             ```
         </div>
     </div>
-</div>
+</div> -->

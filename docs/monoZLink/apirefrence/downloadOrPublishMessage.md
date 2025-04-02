@@ -15,29 +15,33 @@ sidebar_position: 9
             <div className="card__body">
                 <div className="row mb-2">
                     <div className="col col--4"><code>ORG-ID</code></div>
-                    <div className="col col--8">The unique ID assigned to your organisation</div>
+                    <div className="col col--8">組織ごとにユニークなIDです。</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>ICCID</code></div>
-                    <div className="col col--8">Unique ICCID of target device</div>
+                    <div className="col col--8">ICCIDは対象のデバイス（SIM）ごとにユニークに割り振られるIDです。</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>Topic</code></div>
-                    <div className="col col--8">Topic can be empty or multiple but must start with a slash (/). For example: "/Name1/Name2/..".
-                    <br/>Max length is 512 bytes with including default topc "\/\< ORGID\>\/\<ICCID\>\/sub".</div>
+                    <div className="col col--8">MQTTのTopicを指定します。「"/\<ORGID\>"/\<ICCID\>"/sub」に続くTopicを指定できます。空でも問題ありません。
+                    <br/>最大長は「"/\<ORGID\>"/\<ICCID\>"/sub」を含めて512byteです。</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>QoS</code></div>
-                    <div className="col col--8">Quality of Service, can be 0 or 1.</div>
+                    <div className="col col--8">MQTTのQoSを指定します。 monoZ:Linkでは0と1を指定できます。</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>Message</code></div>
-                    <div className="col col--8">Downlink message. Range is 1-4096 bytes.
-                    <br/>monoZJet max message length is 1024 bytes.</div>
+                    <div className="col col--8">ダウンリンクメッセージ本文。最大長は4096byteです。
+                    <br/>monoZ:Jetが受け取れるメッセージの最大長は1024byteです。</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>Format</code></div>
-                    <div className="col col--8"> 0 (JSON) or 1 (TEXT).</div>
+                    <div className="col col--8">ダウンリンクメッセージの形式を指定します。
+                    <br/>0:JSON形式
+                    <br/>&nbsp;入力したメッセージがJSON形式で改行を含む場合、改行を削除して送信します。（monoZ:Jetは改行を含むメッセージを強要しないため。）
+                    <br/>1:TEXT形式
+                    <br/>&nbsp;入力したメッセージをそのまま送信します。</div>
                 </div>
             </div>
         </div>
@@ -96,7 +100,7 @@ sidebar_position: 9
                 </summary>
             </div>
         </div>
-    <!-- </div>
+<!-- </div>
     <div className="col col--5"> -->
         <div className="sticky">
             ##### cURL
@@ -121,5 +125,5 @@ sidebar_position: 9
             }
             ```
         </div>
-    <!-- </div>
+<!-- </div>
 </div> -->

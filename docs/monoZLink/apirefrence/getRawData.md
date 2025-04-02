@@ -16,15 +16,15 @@ sidebar_position: 7
             <div className="card__body">
                 <div className="row mb-2">
                     <div className="col col--4"><code>ORG-ID</code></div>
-                    <div className="col col--8">The unique ID assigned to your organisation</div>
+                    <div className="col col--8">組織ごとにユニークなIDです。</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>StartTime</code></div>
-                    <div className="col col--8">Starting time in ISO:8601 format</div>
+                    <div className="col col--8">開始時間です。時刻形式はISO:8601の形式です。</div>
                 </div>
                 <div className="row mb-2">
                     <div className="col col--4"><code>EndTime</code></div>
-                    <div className="col col--8">End time in ISO:8601 format</div>
+                    <div className="col col--8">終了時間です。時刻形式はISO:8601の形式です。</div>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@ sidebar_position: 7
                 </summary>
             </div>
         </div>
-    <!-- </div>
+<!-- </div>
     <div className="col col--5"> -->
         <div className="sticky">
             ##### cURL
@@ -131,5 +131,5 @@ sidebar_position: 7
             }
             ```
         </div>
-    <!-- </div>
+<!-- </div>
 </div> -->

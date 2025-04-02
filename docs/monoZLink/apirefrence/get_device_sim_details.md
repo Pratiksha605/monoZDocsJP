@@ -3,9 +3,11 @@ title: GET デバイス情報/SIM情報
 sidebar_position: 3
 ---
 
-<!-- <div className="row">
-    <div className="col col--7"> -->
-        <p className="Get-link"><span className="get">GET</span> <em>https://link.monoz.io/api/v1/{ORG-ID}/Device/Sim/Detail/{ICCID}</em></p>
+content commented. hide page
+
+<!-- <div className="row"> -->
+<!-- <div className="col col--7"> -->
+<!-- <p className="Get-link"><span className="get">GET</span> <em>https://link.monoz.io/api/v1/{ORG-ID}/Device/Sim/Detail/{ICCID}</em></p>
         デバイスとSIMの詳細情報および、リクエストした月のデバイス使用状況のデータを返します。
         
         ##### Args
@@ -107,10 +109,10 @@ sidebar_position: 3
                     </div>
                 </summary>
             </div>
-        </div>
-    <!-- </div>
-    <div className="col col--5"> -->
-        <div className="sticky">
+        </div> -->
+<!-- </div> -->
+<!--     <div className="col col--5"> -->
+<!-- <div className="sticky">
             ##### cURL
             ```jsx
                 curl --location 'https://link.monoz.io/api/v1/mti/Device/Sim/Detail/1234567890\
@@ -137,6 +139,6 @@ sidebar_position: 3
                 }
             }
             ```
-        </div>
-    <!-- </div>
-</div> -->
+        </div> -->
+<!-- </div> -->
+<!-- </div> -->

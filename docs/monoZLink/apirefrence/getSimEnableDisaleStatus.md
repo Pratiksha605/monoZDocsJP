@@ -2,7 +2,9 @@
 title: Get SIM Enable/Disable Status
 sidebar_position: 5
 ---
-<div className="row">
+content commented. hide page
+
+<!-- <div className="row">
     <div className="col col--7">
         <p className="Get-link"><span className="get">GET</span> <em>https://link.monoz.io/api/v1/{Org-Id}/Sim/Enable/{ICCID}</em></p>
         Returns the status of IMEI lock, whether the SIM is currently locked to the device or not.
@@ -93,4 +95,4 @@ sidebar_position: 5
     </div>
 </div>
 
-</div>
+</div> -->
