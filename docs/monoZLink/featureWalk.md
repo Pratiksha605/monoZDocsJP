@@ -37,140 +37,139 @@ mmonoZ:Linkのアカウントを作成してみましょう。
    <img src={require('@site/static/img/monoZ-Link-feature-walk-through.png').default} className="img-center" />
    <img src={require('@site/static/img/monoZ-Link-Account.png').default} className="img-center" />
 
-### Create an Order
+### 注文を作成する
 
-monoZ:Link also hosts order management system to procure, track orders of monoZ products. Note that creating an order is available only for admin users of the organization. Follow the steps below to place an order. 
-1. Navigate to the “Order” screen and click on the “Add Order” from the top right corner.
+mmonoZ:Linkは、monoZ製品の注文と注文状況を確認できる注文管理システムも提供しています。注文の作成は組織の管理者ユーザーのみが行えます。注文を行うには、以下の手順に従ってください。
+1. 「注文」画面に移動し、右上の「+注文の追加」をクリックします。    
 
-2. In the pop-up, choose your order content from Order Description Type from the drop-down list. Bundles such as monoZ:Jet bundle, monoZ:Link bundle can be selected. 
+2. ポップアップで、「注文タイプ」のドロップダウンリストから、注文したいmonoZ製品を選択します。「追加データ」もここで選択できます。
 
-3. 	Next choose a pricing plan for the endpoint procured through the bundle. For instance, Both monoZ:Link Bundle consists of 4 pricing plans, namely Essential, Essential  +, Fleet, High Data.
+3. 次に「料金プラン」を選択します。例えば、「注文タイプ」で「monoZ:Link Bundle」を選択した場合は、「Essential」、「Essential +」、「Fleet」、「High Data」の4つの料金プランから選択できます。
 
-4. Enter order quantity, shipping address, billing method and check the details in the summary view. 
+4. 注文数量、請求先住所、配送先住所を入力し、ポップアップ右側の「注文の概要」ビューで注文内容を確認します。
 
-5. Once finalized, click “create order” to place the order. 
+5. 注文内容を確認出来たら「注文の作成」をクリックして注文を確定します。
 
-6. The created order appear in the orders list with a order number with “pending” order status. The created order can be edited until the status of the order is under “pending”.
+6. 作成された注文は、注文番号と「保留中」ステータスとともに注文一覧に表示されます。作成された注文は注文ステータスが「保留中」の間は編集可能です。
 
-7. The order statutes can be interpreted as follows,
+7. 注文ステータスは以下の状態を表しています。
 
-   1. Pending: Order created but not verified by monoZ team 
+   1. 保留中: 注文が作成されました。monoZオーダー担当者の確認が完了していません。
 
-   2.	Processing: Created order has been verified by monoZ team and currently being processed 
+   2. 処理中: 作成された注文がmonoZオーダー担当者に確認され、発送準備を行っています。
 
-   3.	Shipped: The order has been shipped by monoZ team 
+   3. 発送済み: 注文はmonoZオーダー担当者によって発送されました。 
 
-   4.	Delivered: The order has been delivered at destination 
+   4. 配達済み: 注文された商品が配送先に配達されました。 
 
-   5.	Cancelled: The order has been cancelled by monoZ team 
+   5. キャンセル: 注文はmonoZオーダー担当者によってキャンセルされました。
 
-8. 	Every order status change is accompanied with an email notification to the contact email registered to the organization.
+8. 注文ステータスが更新されるたびに、組織に登録されている連絡先メールアドレスにメール通知が送信されます。
 
 <img src={require('@site/static/img/monoZ-Link-Order.jpg').default} className="img-center" />
 <img src={require('@site/static/img/monoZ-Link-Add-Order.jpg').default} className="img-center" />
 
 
-### Create Protocol Configuration
+### 転送設定を作成する
 
-Protocol configurations or configurations allow users to set the incoming and outgoing protocol of the device and route the incoming device data to its respective destinations. monoZ:Link supports native Webhook and AWS IoT Core integration. Check out the configurations section for step-by-step guide on protocol configurations.
+転送設定にて、ユーザーはデバイスの受信プロトコルと送信プロトコルを設定し、デバイスから受信したデータを指定した転送先にルーティングできます。monoZ:LinkはWebhookとAWS IoT Coreとの連携をサポートしています。詳しくは転送設定のチャプターをご確認ください。
 
-### Create a Group
+### グループを作成する
 
-Groups provide a way to organize your devices, distribute firmware, and set a common configuration. Users may group devices based on product line, deployed regions, etc. Follow the steps below to create a group and attach a configuration.
+グループはデバイスに共通の設定を提供し、ファームウェアを配布をグループ単位で管理することが出来ます。ユーザーは、製品ラインや展開地域などに基づいてデバイスをグループ化できます。グループの作成と設定は以下の手順に従ってください。
 
-1.	Navigate to link.monoz.io, enter “Groups” and click on the “Add Group” button on top right corner. 
+1.	「グループ」画面に移動し、右上の「+グループの追加」をクリックします。 
 
-2.	Enter the respective information and click “save”.
+2.	以下の情報を入力し、「保存」をクリックします。
 
-    1.	 Group name: Max 20 Alpha-Numeric characters including @$#._-  
+    1.	 グループ名: 記号「@$#._- 」を含む最大 20 文字の英数字 
 
-    2.	 Available configuration: Select configuration setting for the group 
+    2.	 利用可能な転送設定: 作成済みの転送設定からグループに付与する転送設定を選択します。
 
-    3. Description: Free comments. 
+    3. 説明: 自由なコメント。
 
-    4.	 Set as Default: Used when the enterprise edition auto registration function is enabled. Specifies the group settings to be used for auto-registered devices. 
+    4.	 デフォルト設定：Enterpriseをご契約されていて、自動登録機能が有効になっている場合に使用できます。自動登録されたデバイスの所属先グループに指定する場合はチェックを入れてください。
     
-    5.	 IMEI Lock: When enabled, when an endpoint is attached to the group it locks the SIM with device IMEI. 
+    5.	 IMEI ロック: チェックを入れると、グループに所属するデバイスの IMEIロックが有効になります。
 
  <img src={require('@site/static/img/monoZ-Link-Group.jpg').default} className="img-center" />
 
- ### Add Device to Group
+ ### デバイスをグループに追加する
 
- Devices or device endpoint represents the actual device in the monoZ:Link space. Devices are uniquely identified by the ICCIDs of the SIM. Follow the steps below to attach a newly procured device endpoint with a group.
+デバイスはmonoZ:LinkにおいてSIMのICCIDによって一意に識別されます。新しいデバイスをグループに登録するには以下の手順に従ってください。
 
-1.	Navigate to Devices menu and click on “Registered Devices”. When new endpoints are procured, upon successful communication, the endpoints are available in this space.
+1.	「デバイス」メニューに移動し、「登録済みデバイス」をクリックします。
 
-2.	Select the devices to be moved to your Device list. 
+2.	登録済みデバイス一覧からグループに登録させたいデバイスにチェックを入れます。 
 
-3.	Click “Move” button on the top left corner and select the target Group from the dropdown list. 
+3.	左上の「移動」ボタンをクリックし、ドロップダウンリストから対象のグループを選択します。
 
-4.	Upon successful addition, the devices shall appear in the “Devices” page. Now the setup is complete and device endpoint is ready to receive data from actual device. We recommend a 1minute delay after moving device and before sending data.
+4.	登録済みデバイスの移動が完了すると、選択したデバイスが「デバイス」ページに表示されます。これでセットアップは完了で、デバイスからデータを受信できるようになります。デバイスの移動後、データを送信を開始するまでに1分程度時間を空けてください。
 
  <img src={require('@site/static/img/monoZ-Link-Registered-Devices.jpg').default} className="img-center" />
  <img src={require('@site/static/img/monoZ-Link-Destination-Group.jpg').default} className="img-center" />
  <img src={require('@site/static/img/monoZ-Link-Devices.jpg').default} className="img-center" />
 
- ### View/Edit Device
+ ### デバイスの閲覧/編集
 
- Once device is registered and attached to a configuration, users can access several information related to the device. Further, users can edit existing information of devices in the devices page.
-The following four action buttons can be seen on the top right corner of Devices page,
+ デバイスが登録されると、ユーザーはデバイスに関する様々な情報にアクセスできるようになります。デバイスページで既存のデバイス情報を編集することもできます。
 
-   1.	Refresh icon: It refreshes the page 
+   1.	リフレッシュ: ページを更新します。
 
-   2.	Filter icon: It filters the device list by Group, tag, device name or ICCID. 
+   2.	フィルター: グループ、タグ、デバイス名、または ICCID でデバイスリストをフィルターします。
 
-   3.	Registered Devices: These buttons enter the page where users can view the newly purchased device endpoints 
+   3.	登録済みデバイス: 購入してグループに移動していないデバイスの一覧を確認できます。 
 
-   4.	Others: Allow users to bulk export all/selected device to CSV, change group of selected devices. In case of changing group, the selected devices must be in the   same group. 
+   4.	その他: ユーザーがすべてのデバイスまたは選択したデバイスをCSVに一括エクスポートしたり、選択したデバイスのグループを変更したりできるようにします。グループを変更する場合、選択したデバイスは同じグループに属している必要があります。 
 <img src={require('@site/static/img/monoZ-Link-Actions.jpg').default} className="img-center" />
 
-On the devices list, each device has 3 action buttons
+デバイス一覧で表示される情報と、2つのアクションボタンがあります。
 
-1.	ICCID: The 19-digit ID from the device SIM. 
+1.	ICCID: デバイス SIMの19桁のID。
 
-2.	Device Name: Device name set by the user. 
+2.	デバイス名: ユーザーが設定したデバイス名。
 
-3. Tags: Tags associated to the device by the user.
+3. タグ: ユーザーがデバイスに関連付けたタグ。
 
-4.	Group Name: The name of group where device is categoried. 
+4.	グループ名: デバイスが登録されているグループの名前。 
 
-5.	Protocol: The protocol configuration attached to the group of the device.
+5.	転送メソッド: デバイスのグループに添付された転送設定のメソッド。
 
-6.	First timestamp packet: The activation date of the device (day of first packet) 
+6.	有効日: デバイスがアクティベーションされたタイムスタンプ（最初にデータ通信が発生したタイムスタンプ）
 
-7. Edit Button: Edit the device information such as name, group, tag. 
+7. 編集ボタン: 名前、グループ、タグなどのデバイス情報を編集します。 
 
-8.	Send Button: Initiate Downlink request. 
+8.	送信ボタン: ダウンリンクのデータ送信を行います。 
 
 <img src={require('@site/static/img/monoZ-Link-Device-List.jpg').default} className="img-center" />
 
-Upon clicking the device, a side menu pops up with more information about the device.
+デバイスをクリックすると、デバイスに関する詳細情報を示すサイドメニューが表示されます。
 
-1.	Action: Buttons to enable/disable IMEI lock, reset SIM, enable/disable SIM.
+1.	操作: IMEI ロックの有効化/無効化、SIM のリセット、SIM の有効化/無効化を行うボタン。
 
-2.	Volume: Used data volume against the remaining volume. 
+2.	 総使用量: 残りの容量に対する使用済みデータ容量。 
 
-3.	Connectivity: Online/Offline status of device. 
+3.	接続ステータス: デバイスのオンライン/オフライン状態。 
 
-4.	Last session: Last connected operator and country. 
+4.	直近の接続先: 最後に接続したオペレータと国。
 
-5.	Last GPRS update: Timestamp of the last GPRS update as captured by the network. Last GPRS update is a representative timestamp of the device`s active date and it doesn’t doesn’t represent the last message from the device. 
+5.	最後に受信したメッセージのタイムスタンプ：最後にデータを受信したタイムスタンプです。
 
-6.	Device IMEI: IMEI information of the device. 
+6.	IMEI: デバイスの IMEI 情報。
 
-7.	Device IP: IP information of the device. 
+7.	IPアドレス: デバイスの IP 情報。
 
-8.	SIM Status: Data status of the device. If disabled the device shall not be able transfer data. 
+8.	SIMステータス：デバイスのデータステータス。無効になっている場合、デバイスはデータを転送できません。
 
-9.	SIM Expiry Date: By Default, the SIM card used in device have a different expiry date as compared to monoZ:Link endpoint expiry date. 
+9.	デバイスの有効期限: デフォルトでは、デバイスで使用される SIM カードの有効期限は、monoZ:Link エンドポイントの有効期限とは異なります。 
 
-10.	Usage graph: Shows data/UL & DL message usage statistics.
+10.	使用状況グラフ: データ/UL および DL メッセージの使用状況統計を表示します。
 
 <img src={require('@site/static/img/monoZ-Link-Device-Info.jpg').default} className="img-center" />
 
-### Send data from IoT device to monoZ:Link
+### デバイスからmonoZ:Linkにデータを送信する
 
-Payload data can be sent to monoZ:Jet or any IoT device to a registered endpoint in monoZ:Link over raw text or JSON using MQTT protocol with QOS 0 or QOS 1.
+ペイロード データは、QOS 0 または QOS 1 の MQTT プロトコルを使用して、生のテキストまたは JSON 経由で monoZ:Jet または任意の IoT デバイス上の monoZ:Link に登録されたエンドポイントに送信できます。
 
 <table>
     <tr>
@@ -183,9 +182,9 @@ Payload data can be sent to monoZ:Jet or any IoT device to a registered endpoint
     </tr>
 </table>
 
-monoZ ecosystem strive to create solutions with minimal data expenditure at device end and hence in the case of monoZ:Jet, it doesn’t add any metadata while transferring payload to the cloud.
+monoZ エコシステムは、デバイス側でのデータ消費を最小限に抑えたソリューションの作成を目指しており、そのため monoZ:Jet の場合、ペイロードをクラウドに転送する際にメタデータを追加しません。
 
-Here is a simple example of data transfer with monoZ:Jet,
+これはmonoZ:Jetを使ったデータ転送の簡単な例です。
 
 <table>
     <tr>
@@ -210,9 +209,9 @@ Here is a simple example of data transfer with monoZ:Jet,
     </tr>
 </table>
 
-### Send data from monoZ:Link to IoT Device
+### monoZ:Linkからデバイスにデータを送信する
 
-Payload data can be sent from monoZ:Link to any registered IoT device endpoint over raw text or JSON using MQTT protocol.
+ペイロード データは、MQTT プロトコルを使用して、生のテキストまたは JSON 経由で monoZ:Link から登録済みの任意の IoT デバイス エンドポイントに送信できます。
 
 <table>
     <tr>
@@ -225,21 +224,21 @@ Payload data can be sent from monoZ:Link to any registered IoT device endpoint o
     </tr>
 </table>
 
-Follow steps below to send a downlink message from monoZ:Link to the device,
+monoZ:Linkからデバイスにダウンリンクメッセージを送信するには、以下の手順に従ってください。
 
-1.	Click the send button of the device for which downlink need to be initiated 
+1.	ダウンリンクを開始するデバイスの送信ボタンをクリックします。
 
-2.	User can choose between JSON/Text message format over QOS 0 or QOS 1 
+2.	ユーザーは、QOS 0 または QOS 1 で JSON/テキスト メッセージ形式を選択できます。
 
-3.	Enter the message in the DL message content and press send to initiate the downlink message. 
+3.	DL メッセージ コンテンツにメッセージを入力し、送信を押してダウンリンク メッセージを開始します。
 
-4. If the registered device is not connected to the platform, it shall receive it upon next successful subscribe.
+4. 登録されたデバイスがプラットフォームに接続されていない場合は、次回のサブスクライブが成功したときに受信されます。
 
 <img src={require('@site/static/img/monoZ-Link-DownLink-Message.jpg').default} className="img-center" />
 
-### Add users to your account
+### ユーザーを追加する
 
-To delegate the management of your project, collaborate with other developers, or offer read-only access, you can add team members. It’s straightforward to add members, and you can assign them different levels of access as described below.
+プロジェクトの管理を委任したり、他の開発者と共同作業したり、読み取り専用アクセスを提供したりするために、チームメンバーを追加できます。メンバーの追加は簡単で、以下に示すように、それぞれに異なるレベルのアクセス権限を割り当てることができます。
 
 <table>
     <tr>
@@ -264,26 +263,26 @@ To delegate the management of your project, collaborate with other developers, o
     </tr>
 </table>
 
-To add new members to your monoZ:Link project:
+monoZ:Link プロジェクトに新しいメンバーを追加するには:
 
-1. Login as Tenant admin. 
-2. Enter “Users” menu and click “Add User”.
+1. テナント管理者としてログインします。 
+2. 「ユーザー」メニューに入り、「ユーザーの追加」をクリックします。
 
 <img src={require('@site/static/img/monoZ-Link-Users.jpg').default} className="img-center" />
 
-3. Enter the respective information and click “save”.
+3. それぞれの情報を入力し、「保存」をクリックします。
 
 <img src={require('@site/static/img/monoZ-Link-Save.jpg').default} className="img-center" />
 
-    -   User name: enter any name
-    -   Login ID: enter login ID. Enter in email address format.
-    -	User type: specify the user role. Set to [General/Read only].
-    -	Password: enter the password.
-    -	Active: creates an account based on whether it is active or not. If active, the user is immediately available.
+    -   ユーザー名: 任意の名前を入力
+    -   ログインID:ログインIDを入力します。メールアドレス形式で入力してください。
+    -	役割：ユーザーの役割を指定します。[一般/読み取り専用]に設定します。
+    -	パスワード：パスワードを入力します。
+    -	アクティブ: アクティブかどうかに基づいてアカウントを作成します。アクティブな場合、ユーザーはすぐに利用可能になります。
 
-### Limitations-Group Blocking
+### グループブロック機能
 
-To block connections from misbehaving servers, monoZ:Link has incorporated group blocking feature. If data push failure occur atleast 10 consecutive times and for 10minutes then monoZ:Link determine that there is a problem with the server and data push for all devices in that group will be stopped. An alert email will be sent to customer for unblocking the group and data push will resume after unblocking.
+動作不良のサーバーへの不要なデータ送信を防ぐために、monoZ:Link にはグループブロック機能が組み込まれています。データ転送の失敗が10回連続して10分間続いた場合、monoZ:Link は転送先サーバーに問題があると判断し、そのグループ内のすべてのデバイスを対象にデータ転送を停止します。グループのブロックを解除するにはお客様に送信されるアラートメールよりブロックを解除してください。
 
 <img src={require('@site/static/img/monoZ-Link-Limitations-Group-Blocking.jpg').default} className="img-center" />
 
