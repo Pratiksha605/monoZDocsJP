@@ -20,7 +20,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'monoZ:Link',
-    Svg: require('@site/static/img/monoZLink.svg').default,
+    Svg: require('@site/static/img/monoZLink1.svg').default,
     description: '/docs/monoZLink/introduction',
   },  
   {

@@ -52,13 +52,20 @@ USBで通信する場合は、J1コネクタのUARTピンが接続されてい�
 </div>
 
 ### PCB端子接続
+
 monoZ:JetはPCB端子接続をサポートしています。端子接続するには以下の2種類の方法が用意されています。
-
     方法 1: monoZ:Jetのオプション基板を切り離す方法です。この方法は簡単に行えますが、一度切り離したオプション基板は元に戻せないので注意してください。 
+    <div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide2.png').default} />
+    </div>
+    </div>
     方法 2: 以下に示す3つの抵抗を外す方法です。この方法で取り外した抵抗を元の位置につけ直すことでUSB接続を使用することが出来ます。抵抗器の不適切な取り外しや取り付けによる損傷や故障によって生じたハードウェアの問題については一切の責任を負いません。
+    <div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide3.png').default} />
-
+</div>
+</div>
 J1コネクタのp7、p8をホストのRXとTXに接続することで、ホストとmonoZ:JetはUART 経由で通信が行えます。\
 monoZ:Jetの主電源を確保するためにJ2コネクタのp1はDC5V電源に、p2はGNDに接続してください。
 

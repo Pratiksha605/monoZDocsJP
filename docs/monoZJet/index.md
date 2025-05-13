@@ -2,9 +2,11 @@
 title: monoZ:Jet Old
 sidebar_position: 2
 ---
-
+<div className="card">
+    <div className="card__body">
 <img src={require('@site/static/img/monoZ-Jet-Integration.jpg').default} className="img-center" />
-
+</div>
+</div>
 monoZ:Jet is a compact solderable System-on-Module designed to provide secure LPWA connectivity for your system. With its small 32.5 x 35 mm form factor, monoZ:Jet can seamlessly integrate into your product design, enabling immediate connectivity to monoZ:Link via 1NCE. Together with monoZ:Link platform, monoZ:Jet provides  a reliable means for connecting user devices thereby, optimize operational efficiencies and provide competitive advantage to the end product. Figure 2 represents the integration of monoZ:Jet with a host device. 
 ### Features
 - Global connectivity supporting        

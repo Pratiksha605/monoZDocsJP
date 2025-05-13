@@ -9,7 +9,11 @@ sidebar_position: 1
 
 2. ドロップダウンリストから[Webhook]を選択してください。
 
+<div className="card">
+    <div className="card__body">
 <img src={require('@site/static/img/monoZ-Link-Wehbook.jpg').default} className="img-center" />
+</div>
+</div>
 
 3. 下記の転送設定を行います。。
    1. [Source Protocol]に"MQTT"を指定します。
@@ -27,8 +31,11 @@ sidebar_position: 1
    7. [Send]で転送するデータに含めるデバイス識別情報をデバイスのICCID、もしくはMQTTトピックのどちらかを選択します。ここではICCIDを選択します。
 
    8. [Save]をクリックすると転送設定が保存されます。
-
+<div className="card">
+    <div className="card__body">
   <img src={require('@site/static/img/monoZ-Link-Protocol-Configuration.png').default} className="img-center" />
+</div>
+</div>
 
 #### Webhook データ転送仕様
 monoz:Linkは以下の仕様でデータを転送します。

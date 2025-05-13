@@ -5,8 +5,11 @@ sidebar_position: 1
 <!-- 
 <img src={require('@site/static/img/monoZ-Jet.png').default} />
 <br/> -->
+<div className="card">
+    <div className="card__body">
 <img src={require('@site/static/img/monoZ-Jet-Integration.jpg').default} className="img-center" />
-
+    </div>
+</div>
 monoZ:Jet は安全なLPWA通信を提供するSoC(システムオンモジュール)です。\
 32.5 x 35 mm の小型モジュールは、あらゆる製品にシームレスに統合できます。\
 1NCEとmonoZ:Linkプラットフォームを組み合わせることで信頼性の高い通信を提供します。\

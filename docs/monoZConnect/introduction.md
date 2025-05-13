@@ -22,4 +22,8 @@ monoZ:Connectは病院や工場にあるWindows/Linuxマシンに接続して、
 - 対応キャリア 
      - SoftBank (NIDD)
 
-<img src={require('@site/static/img/monoZ Connect.png').default} className="img-center" />
+<div className="card">
+    <div className="card__body">
+<img src={require('@site/static/img/monoZ-Connect.png').default} className="img-center" />
+</div>
+</div>

@@ -21,18 +21,33 @@ monoZ:Jetクイックスタートガイドへようこそ。このガイドで�
     iv. Pi アドオン ボード (オプション ボード)
 2. 1NCE SIMのICCIDがmonoZ:Linkの[デバイス]または[登録済みデバイス]に登録されていることを確認します。
 
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide1.png').default} />
+    </div>
+    </div>
 
 ### Setting Up monoZ:Jet
 1. monoZ:Jetは、USBモードまたはUARTモードでホストと通信することが出来ます。デフォルトではUSB モードが有効になっています。
 2. ホストがUARTモードでmonoZ:Jetと通信したい場合は、次のいずれかの方法でmonoZ:JetをUART モードに切り替えることができます。\
     i. 方法 1: PCBカッターを使用してmonoZ:JetボードのUSBコネクタ基板を切り取ります。一度切り離すとUSBモードで使用することは出来なくなりますのでご注意ください。
+    <div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide2.png').default} />
+    </div></div>
     ii. 以下の画像を参考に、3つの抵抗器を取り外します。この方法を使用した場合、抵抗器を元の位置にはんだ付けし直すことで、monoZ:JetをUSBモードに戻すことも出来ます。  
+    <div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide3.png').default} />
+    </div>
+    </div>
 3. USBモードとUART モードの通信構成を確認する場合は、 <a target="_blank" href="https://docs.monoz.io/docs/monoZJet/hostcommunication">こちら</a>をご確認ください。
 4. 本クイックスタートガイドでは、PCをホストデバイスとして使用し、コンソールアプリケーションを使用してUSB経由でmonoZ:Jetと通信します。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide4.png').default} />
+    </div>
+    </div>
 
 ##### 注意:
     i. USBと5V VBUSピン経由で同時にmonoZ:Jetに給電しないでください。 過電流によりmonoZ:Jet が故障する可能性がございます。
@@ -46,26 +61,45 @@ monoZ:Linkにログインして、転送設定の登録を行います。\
 転送設定ではプロトコルの変換と、転送先の設定を行います。\
 このガイドでは、転送先にHTTPSエンドポイントを指定します。
 1.	[転送設定]>[転送設定の登録]>[Webhook]を選択して、新規の転送設定を登録します。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide5.png').default} />
+    </div>
+    </div>
 2. 登録が完了したら、[グループ]>[グループの登録]を選択して、新しいグループを作成します。\
 グループの登録では手順1で登録した「転送設定」を選択してください。\
 初めて作成したグループは自動的に「デフォルト」グループとして割り当てられます。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide6.png').default} />
+    </div>
+    </div>
 3. [デバイス]>[登録済みのデバイス]をクリックして、対象デバイスのICCIDにチェックを入れて[移動]をクリックします。
 選択デバイスのグループ変更では、手順2で作成したグループを選択して[移動]をクリックします。\
 デフォルトグループが割り当てられた後にSIMを購入した場合は、新しいデバイスがmonoZ:Linkに登録される際に自動的にデフォルトグループに割り当てられます。\
 必要に応じてデバイスを別のグループに移動させてください。このステップで、monoZ:Link のセットアップは完了です。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide7.png').default} />
- 
+ </div>
+ </div>
 
 ### データを送信する
 1. ホストからmonoZ:Jetへデータを送信します。\
 前述のようにこのクイックスタートガイドではPCをホストデバイスとして使用します。\
 まずはPoCパッケージの1NCE SIMをmonoZ:Jetに挿入し、U.FLポート(Main)に付属のアンテナを接続します。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide8.png').default} />
- 
+ </div>
+ </div>
+
 2. USBケーブルを使用してmonoZ:JetをPCに接続します。接続すると、monoZ:Jetボードの電源LEDが赤く点灯します。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide9.png').default} />
+    </div>
+    </div>
  
 3. 次にターミナルエミュレーターを使ってmonoZ:Jetとの通信を確立します。\
 オープンソースソフトウェアターミナルエミュレーターPuttyの設定に関するガイドについては、<a target="_blank" href="https://docs.monoz.io/v1/_d_e_b_u_g__c_o_n_s_o_l_e.html">こちらをクリックして参照してください</a>。
@@ -77,33 +111,69 @@ monoZ:Linkにログインして、転送設定の登録を行います。\
 このクイックスタートガイドでは日本から実行していいる想定で日本のバンドを設定します。\
 Band設定は1度設定すれば、ご利用の地域が変わらない限りは繰り返し設定する必要はありません。\
 +MZBAND: 0 応答は、バンド設定が成功したことを示します。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide10.png').default} />
+    </div>
+    </div>
 6. 次にmonoZ:JetのORG IDを設定します。\
 ORG IDはデバイスが所属する組織を特定するために設定します。\
 こちらも1度設定すればOKです。
-    <img className="img-center" src={require('@site/static/img/quickguide11.png').default} /><br/>
+<div className="card">
+    <div className="card__body">
+    <img className="img-center" src={require('@site/static/img/quickguide11.png').default} />
+    </div>
+    </div>
+    <div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide12.png').default} />
-
+</div>
+</div>
 7. 次にmonoZ:Jetを初期化し、MZSTARTを使用して接続します。\
 MZSTART実行後、ホストは+MZSTART:0とメッセージが表示されるまで待ってください。\
 +MZSTART:3または+MZSTART:4とメッセージが表示さえることがあります。\
 これはmonoZ:Jetがネットワーク、monoZ:Linkプラットフォームへの接続を再試行していることを表しています。\
 推奨のband設定をしていても、最初のネットワーク接続は2分～3分程度かかることがあります。\
 推奨band設定をしていない場合、monoZ:Jetは全てのbandのスキャンを行うため、さらに接続に時間がかかります。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide13.png').default} />
+    </div>
+    </div>
+
 8. +MZSTART:0を受信すると、ホストはMZSENDコマンドを使用してmonoZ:Linkにデータを送信できます。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide14.png').default} />
+    </div>
+    </div>
 
 9. 送信されたデータは安全なチャネルを介してmonoZ:Linkに送信されます。\
 その後、monoZ:Linkは転送設定に従って転送先サーバーに指定のプロトコルでデータを転送します。\
 monoZ:Jetから送信されたデータは、monoZ:Linkを介して転送先サーバーで受信されます。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide15.png').default} />
+    </div>
+    </div>
 10. MZRECEIVEを使用して、monoZ:JetでmonoZ:Linkからのメッセージを受信状態にします。\
 受信状態を有効にすると、monoZ:Jetは +MZRECEIVE URCを使用して、monoZ:Linkから受信したデータをホストに送信します。
+<div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide16.png').default} />
+    </div>
+    </div>
 11.	Let’s send downlink from monoZ:Link.
-    <img className="img-center" src={require('@site/static/img/quickguide17.png').default} /><br/>
+<div className="card">
+    <div className="card__body">
+    <img className="img-center" src={require('@site/static/img/quickguide17.png').default} />
+    </div>
+    </div>
+    <div className="card">
+    <div className="card__body">
     <img className="img-center" src={require('@site/static/img/quickguide18.png').default} />
+    </div>
+    </div>
  
 12. これでmonoZ:JetとmonoZ:Linkを使ったデータ送信のクイックスタートガイドは終了です。\
 不明な点がある場合は、customer-care@meritech.odoo.com にメールでサポートリクエストを送信してください。

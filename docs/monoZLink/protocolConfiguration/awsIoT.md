@@ -6,33 +6,56 @@ sidebar_position: 3
 あわせてAWS IoT Coreの設定についても触れたいと思います。\
 AWSアカウントの作成手順については割愛します。
 
+<div className="card">
+    <div className="card__body">
 <img src={require('@site/static/img/monoZ-Link-AWS-Iot.png').default} />
-
+</div>
+</div>
 
 #### AWS IoT Core "Things"
 1. AWSアカウントでログインして、AWSコンソールを開きます。\
 　[AWS IoT Core] → [Manage] → [All Devices] → [Things] をクリックします。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step1.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step1.png').default} /></div></div>
  
 
 2. [Create things]をクリックします。
+<div className="card">
+    <div className="card__body">
     <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step2.png').default} /><br /><br />
- 
+ </div></div>
 
 3. [Create single thing]を選択して、[Next]をクリックします。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step3.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step3.png').default} />
+    </div>
+    </div>
 
 4. [Thing name]にデバイス名を入力して、[Next]をクリックします。ここでは仮に "XXXXXXXXXXXXXXX5169"と入力します。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step4.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step4.png').default} />
+    </div>
+    </div>
  
 
 
 5. [Auto-generate a new certificate (recommended)]を選択して、[Next]をクリックします。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step5.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step5.png').default} />
+    </div>
+    </div>
  
 
 6. [Attach Policy to Certificate - optional]画面が表示されます。すでにポリシーを作成済みの場合はポリシーを選択してアタッチすることが出来ます。ここではポリシーがないので、ポリシーを添付せずに[Create thing]をクリックします。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step6.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step6.png').default} />
+    </div>
+    </div>
  
 
 7. 次の 4 つのファイルをダウンロードして、[Done]をクリックします。\
@@ -41,13 +64,21 @@ AWSアカウントの作成手順については割愛します。
 ③ Private key file \
 ④ Amazon Root CA 1 \
 thingが作成されたので、thingにアサインするポリシーを作成できます。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step7.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step7.png').default} />
+    </div>
+    </div>
  
 
 
 8.  [Manage] → [Security] → [Policies] → [Create policy]をクリックします。\
 今回は、任意の MQTT トピックにPublishできる新しいポリシーを作成します。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step8.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step8.png').default} />
+    </div>
+    </div>
  
 
 9. [Policy name]に"Test"と入力します。\
@@ -86,18 +117,29 @@ thingが作成されたので、thingにアサインするポリシーを作成�
     	
 
 10. [Create] をクリックするとポリシーが作成されます。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step9.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step9.png').default} />
+    </div>
+    </div>
  
 
 11. [Manage] → [Security] → [Certificates]をクリックします。\
 Thing作成時に作られたCertificateにチェックを入れて、[Actions]のリストから[Attach policy]を選択します。
-
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step10.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step10.png').default} />
+    </div>
+    </div>
  
 
 12. [Policies]の[Choose AWS IoT policy]ドロップダウンリストから作成した"Test" ポリシーにチェックを入れて、[Attach policies]をクリックします。\
 これでAWS IoT Coreへのthingの登録が完了しました。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step11.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step11.png').default} />
+    </div>
+    </div>
  
 
 
@@ -105,7 +147,11 @@ Thing作成時に作られたCertificateにチェックを入れて、[Actions]�
 このエンドポイントは、monoZ:Link で設定を作成するときに使用します。\
 [Connect] → [Domain configurations]をクリックします。\
 Domain configurationsの一覧からエンドポイントに使用したいDomain nameをコピーします。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step12.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step12.png').default} />
+    </div>
+    </div>
  
 
 
@@ -119,10 +165,18 @@ Domain configurationsの一覧からエンドポイントに使用したいDomai
     </table>
 
 2. monoZ:Link を開いて、[Configuration] → [Add Configuration]をクリックします。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step13.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step13.png').default} />
+    </div>
+    </div>
 
 3. ドロップダウンリストから[AWS IoT Core]を選択してください。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step14.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step14.png').default} />
+    </div>
+    </div>
  
 
 4. 下記の各種設定を選択、入力して[Save]をクリックします。
@@ -134,12 +188,20 @@ Domain configurationsの一覧からエンドポイントに使用したいDomai
     <tr><td>Topic</td><td>	Topic to publish on AWS IoT Core. It could be “Same as incoming” or Custom topic.</td></tr>
     <tr><td>QOS</td><td>	MQTTS QOS for publish to AWS IoT Core. Zero or One </td></tr>
     </table>
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step15.png').default} /><br /><br />
+    <div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step15.png').default} />
+    </div>
+    </div>
 
  
 
 5. [Groups] → [Add Group]をクリックします。
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step16.png').default} /><br /><br />
+<div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step16.png').default} />
+    </div>
+    </div>
  
 
 6. 下記の各種設定を選択、入力して[Save]をクリックします。
@@ -147,7 +209,11 @@ Domain configurationsの一覧からエンドポイントに使用したいDomai
     <tr><td>Group Name</td><td>	Test Group (Any Name)</td></tr>
     <tr><td>Available Configuration</td><td>	Test Config (Select from the configuration)</td></tr>
     </table>
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step17.png').default} /><br /><br />
+    <div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step17.png').default} />
+    </div>
+    </div>
 
  
 
@@ -161,7 +227,11 @@ AWS IoT Coreにデータを転送させたいデバイスの[Edit]をクリッ�
         <tr><td>Client Certificate</td><td>	random string-certificate.pem.crt</td></tr>
         <tr><td>Client Key file</td><td>	random string-private.pem.key</td></tr>
     </table>
-    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step18.png').default} /><br /><br />
+    <div className="card">
+    <div className="card__body">
+    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step18.png').default} />
+    </div>
+    </div>
 
  
 
@@ -171,7 +241,12 @@ AWS IoT Coreの[Test] → [MQTT test client]をクリックします。\
 [Topic fileter]に"#"を指定して[Subscribe]をクリックします。\
 IoTデバイス "XXXXXXXXXXXXXXX5169"からmonoZ:Linkにペイロードを送信します。\
 monoZ:LinkはペイロードをAWS IoT CoreにMQTTSプロトコルで転送します。\
-AWS IoT Coreの[MQTT test client]で、転送されてきたペイロードを確認することが出来ます。    <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step19.png').default} /><br /><br />
+AWS IoT Coreの[MQTT test client]で、転送されてきたペイロードを確認することが出来ます。   
+<div className="card">
+    <div className="card__body">
+ <img src={require('@site/static/img/monoZ-Link-AWS-Iot-step19.png').default} />
+ </div>
+ </div>
  
 
 #### AWS IoT Core データ形式

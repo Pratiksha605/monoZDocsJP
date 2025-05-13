@@ -7,7 +7,12 @@ sidebar_position: 3
 monoZ:Connectと通信するにはmonoZ:Connectサービス(MZCS)を使用します。\
 MZCSをWindows/Linuxマシンにインストールして、ホストは簡単なコマンドをMZCSに送信するだけでmonoZ:Connectと通信することが出来ます。
 
+
+<div className="card">
+    <div className="card__body">
 <img src={require('@site/static/img/monoZ-Connect-Host-Comm.jpg').default} className="img-center" />
+</div>
+</div>
 
 ### システム要件
 

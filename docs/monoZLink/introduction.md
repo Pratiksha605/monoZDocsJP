@@ -2,8 +2,11 @@
 title: 概要
 sidebar_position: 1
 ---
-
+<div className="card">
+    <div className="card__body">
 <img src={require('@site/static/img/monoZ-Jet-Integration.jpg').default} className="img-center" />
+</div>
+</div>
 
 monoZ:Linkは、安全性の高い通信経路を担保し、1NCE SIMと連携したコスト効率の高いデータ転送をワンストップで実現するために設計されたIoTプラットフォームです。\
 monoZ:Linkでは、MQTT、HTTPプロトコルをサポートしており、IoTデバイスの管理、プロトコル変換、サードパーティサービスへの転送サービスを提供しています。\
