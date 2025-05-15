@@ -287,24 +287,24 @@ monoZ:Linkからデバイスにダウンリンクメッセージを送信する�
 
 <table>
     <tr>
-        <td><b>Role </b> </td>
-        <td> <b>Limitations </b></td>
-        <td><b>Role </b> </td>
+        <td><b>権限種別 </b> </td>
+        <td> <b>ユーザー数制限 </b></td>
+        <td><b>詳細 </b> </td>
     </tr>
     <tr>
-        <td>Admin User</td>
+        <td>オーナー</td>
         <td>1</td>
-        <td>All functionality </td>
+        <td>すべての画面への閲覧/編集権限があります。 </td>
     </tr>
      <tr>
-        <td>General</td>
+        <td>Manager</td>
           <td> 4</td>
-        <td>Full access to dashboard, groups, config, device management</td>
+        <td>ダッシュボード、グループ、設定、デバイス管理への閲覧/編集権限があります。</td>
     </tr>
      <tr>
         <td>Read-only</td>
            <td>4</td>
-        <td>Read access to dashboard, groups, config, device management</td>
+        <td>ダッシュボード、グループ、設定、デバイス管理への閲覧権限があります。</td>
     </tr>
 </table>
 
