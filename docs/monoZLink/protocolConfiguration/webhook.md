@@ -48,27 +48,27 @@ monoz:Linkは以下の仕様でデータを転送します。
 #### Webhook 転送データ形式
 monoz:Linkは以下のデータ形式でデータを転送します。
 
-##### Format:
+##### データ形式:
 <table>
    <tr>
-      <td><b>Field</b></td>
-      <td><b>Item</b></td>
-      <td><b>Remarks</b></td>
+      <td><b>フィールド</b></td>
+      <td><b>項目</b></td>
+      <td><b>備考 </b></td>
    </tr>
    <tr>
       <td rowspan="1">Method</td>
-      <td>Post</td>
+      <td>POST</td>
       <td></td>
    </tr>
    <tr>
       <td rowspan="1">API URL</td>
       <td>URL</td>
-      <td>Customer defined POST API URL</td>
+      <td>APIのURLが入ります。</td>
    </tr>
    <tr>
       <td rowspan="5">Header</td>
       <td>Authentication</td>
-      <td>This will vary depending on the security method specified in monozLink. Security can be specified as Basic, BearerToken, or API Key</td>
+      <td>Basic、BearerToken、API Keyのいずれのセキュリティメソッドを指定したかによって内容が異なります。</td>
    </tr>
    <tr>
       <td>Content Type</td>
@@ -76,15 +76,15 @@ monoz:Linkは以下のデータ形式でデータを転送します。
    </tr>
    <tr>
       <td>content-length</td>
-      <td>Auto Calculation</td>
+      <td>自動計算されます。</td>
    </tr>
    <tr>
-      <td>host</td>
-      <td>Auto provision</td>
+      <td>HOST</td>
+      <td>URLのドメインが入ります。</td>
    </tr>
    <tr>
       <td>Custom Header</td>
-      <td>User specified customer header</td>
+      <td>ユーザー指定のカスタムヘッダー</td>
    </tr>
    <tr>
       <td rowspan="4">Body</td>
@@ -92,7 +92,7 @@ monoz:Linkは以下のデータ形式でデータを転送します。
       <td>Device ICCID registered in monoZ:Link</td>
    </tr>
    <tr>
-      <td>When a user specifies a topic in monZ:Link setting, the topic value is provided and the field name is changed from "ICCID" to "Topic".</td>
+      <td>monZ:Linkの設定にてTopicを指定するとフィールド名が「ICCID」から「Topic」に変更され、Topicの値が入ります。</td>
    </tr>
    <tr>
       <td>Timestamp</td>
@@ -100,16 +100,16 @@ monoz:Linkは以下のデータ形式でデータを転送します。
    </tr>
    <tr>
       <td>Payload</td>
-      <td>Raw data sent by GW device, user needs to parse, extract and decode the required data</td>
+      <td>デバイスから送信されたデータ。</td>
    </tr>
 </table>
 
-##### Example 1: 1秒間に1つのパケットを取得した場合
+##### 例 1: 1秒間に1つのパケットを取得した場合
 
 <table>
    <tr>
-      <td><b>Field</b></td>
-      <td><b>Item</b></td>
+      <td><b>フィールド</b></td>
+      <td><b>項目</b></td>
    </tr>
    <tr>
       <td rowspan="1">API URL</td>
@@ -146,7 +146,7 @@ monoz:Linkは以下のデータ形式でデータを転送します。
    
 </table>
 
-##### Example 2: 1秒間に複数のパケットを取得した場合
+##### 例 2: 1秒間に複数のパケットを取得した場合
 <table>
    <tr>
       <td><b>Field</b></td>

@@ -181,12 +181,12 @@ Domain configurationsの一覧からエンドポイントに使用したいDomai
 
 4. 下記の各種設定を選択、入力して[Save]をクリックします。
     <table>
-    <tr><td>Source Protocol</td><td>	MQTT</td></tr>
-    <tr><td>Configuration Name</td><td>	Test Config (Any suitable name)</td></tr>
-    <tr><td>Host</td><td>	Paste the device endpoint from AWS</td></tr>
-    <tr><td>CA File (Server Cert)</td><td>	Upload “Amazon Root CA 1” file</td></tr>
-    <tr><td>Topic</td><td>	Topic to publish on AWS IoT Core. It could be “Same as incoming” or Custom topic.</td></tr>
-    <tr><td>QOS</td><td>	MQTTS QOS for publish to AWS IoT Core. Zero or One </td></tr>
+    <tr><td>受信プロトコル</td><td>	MQTT</td></tr>
+    <tr><td>転送設定名</td><td>	任意の転送設定名を指定してください。</td></tr>
+    <tr><td>ホスト</td><td>	AWSのデバイスエンドポイントを指定してください。</td></tr>
+    <tr><td>CAファイル(サーバー証明書)</td><td>	「Amazon Root CA 1」ファイルをアップロードしてください。</td></tr>
+    <tr><td>トピック</td><td>	AWS IoT CoreにPUBLISHする際に使用するトピックを、受信したトピックと同じにするか、<br/>カスタムで指定するかを選択してください。</td></tr>
+    <tr><td>QOS</td><td>	MQTTS QOSを0か1で指定してください。 </td></tr>
     </table>
     <div className="card">
     <div className="card__body">
@@ -206,8 +206,8 @@ Domain configurationsの一覧からエンドポイントに使用したいDomai
 
 6. 下記の各種設定を選択、入力して[Save]をクリックします。
     <table>
-    <tr><td>Group Name</td><td>	Test Group (Any Name)</td></tr>
-    <tr><td>Available Configuration</td><td>	Test Config (Select from the configuration)</td></tr>
+    <tr><td>グループ名</td><td>	任意のグループ名を指定してください。</td></tr>
+    <tr><td>利用可能な転送設定</td><td>	転送設定を選択してください。</td></tr>
     </table>
     <div className="card">
     <div className="card__body">
@@ -223,9 +223,9 @@ AWS IoT Coreにデータを転送させたいデバイスの[Edit]をクリッ�
 これでAWS IoT Core接続用のmonoZ:Linkの設定が完了しました。
 
     <table>
-        <tr><td>Group</td><td>	Select the created Test group </td></tr>
-        <tr><td>Client Certificate</td><td>	random string-certificate.pem.crt</td></tr>
-        <tr><td>Client Key file</td><td>	random string-private.pem.key</td></tr>
+        <tr><td>グループ</td><td>	作成したグループを選択してください。 </td></tr>
+        <tr><td>クライアント証明書ファイル</td><td>	random string-certificate.pem.crt</td></tr>
+        <tr><td>クライアントキーファイル</td><td>	random string-private.pem.key</td></tr>
     </table>
     <div className="card">
     <div className="card__body">

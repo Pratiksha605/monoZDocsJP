@@ -343,43 +343,43 @@ monoZ:Link プロジェクトに新しいメンバーを追加するには:
 </div>
 </div>
 
-Example scenario for blocking:
+ブロック参考シナリオ:
 
 <table>
     <tr>
-        <td> <b>Scenario </b></td>
-        <td> <b>Condition </b></td>
-        <td> <b>Result </b></td>
+        <td> <b>シナリオ </b></td>
+        <td> <b>条件 </b></td>
+        <td> <b>結果 </b></td>
     </tr>
     <tr>
-        <td>Data push failed for 10 consecutive times in 5minutes and successful in next transfer at 6th minute.</td>
+        <td>データ送信開始から5分間は10回連続で送信失敗し、6分経過したときに送信が成功しました。</td>
         <td>
         <codeBlock>
-         10 minutes: no <br/>
-       10 consecutive failure: yes
+         10分：× <br/>
+       10回連続：〇
        </codeBlock>
 </td>
-        <td>No block</td>
+        <td>ブロックしません。</td>
     </tr>
      <tr>
-        <td>Data push failed for 20 consecutive time in 10 minutes and successful in next transfer at 11th minute. </td>
+        <td>データ送信開始から10分間は20回連続で送信失敗し、10分経過した後は送信されません。 </td>
         <td>
       <codeBlock>
-       10 minutes: yes <br/>
-       10 consecutive failure: yes
+       10分：〇 <br/>
+       10回連続：〇
       </codeBlock>
 </td>
-        <td>Block from 11th message</td>
+        <td>ブロックします。</td>
     </tr>
      <tr>
-        <td>Data push failed for 9 consecutive time in 18minutes and successful in next transfer at 20 minute.</td>
+        <td>データ送信開始から18分間は9回連続で送信失敗し、20分経過したときに送信が成功しました。</td>
         <td>   
         <codeBlock>
-         10 minutes: yes <br/>
-       10 consecutive failure: no
+         10分：〇 <br/>
+       10回連続：×
        </codeBlock>
 </td>
-        <td>No block</td>
+        <td>ブロックしません。</td>
     </tr>
 </table>
 
