@@ -3,7 +3,7 @@ title: monoZ:Linkを使う
 sidebar_position: 2
 ---
 
-### monoZ:Linkアカウントを作成する
+### monoZ&#58;Linkアカウントを作成する
 
 mmonoZ:Linkのアカウントを作成してみましょう。
 
