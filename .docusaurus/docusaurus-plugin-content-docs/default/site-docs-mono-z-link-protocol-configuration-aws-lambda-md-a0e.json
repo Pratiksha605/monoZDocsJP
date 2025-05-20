@@ -1,0 +1,27 @@
+{
+  "id": "monoZLink/protocolConfiguration/awsLambda",
+  "title": "AWS Lambda function - hide",
+  "description": "In this guide we'll walkthrough setting up AWS Lambda function to receive data from monoZLink to user`s Lambda function in their AWS environment thereby facilitating efficient data handling for critical applications.",
+  "source": "@site/docs/monoZLink/protocolConfiguration/awsLambda.md",
+  "sourceDirName": "monoZLink/protocolConfiguration",
+  "slug": "/monoZLink/protocolConfiguration/awsLambda",
+  "permalink": "/ja/docs/monoZLink/protocolConfiguration/awsLambda",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "AWS Lambda function - hide",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Webhook",
+    "permalink": "/ja/docs/monoZLink/protocolConfiguration/webhook"
+  },
+  "next": {
+    "title": "AWS IoT Core",
+    "permalink": "/ja/docs/monoZLink/protocolConfiguration/awsIoT"
+  }
+}

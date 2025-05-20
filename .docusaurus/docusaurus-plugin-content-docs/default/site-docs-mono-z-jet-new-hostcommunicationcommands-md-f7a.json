@@ -1,0 +1,27 @@
+{
+  "id": "monoZJetNew/hostcommunicationcommands",
+  "title": "MZコマンド",
+  "description": "MZコマンドはmonoZ:Jetで使用される特別なATコマンドです。",
+  "source": "@site/docs/monoZJetNew/hostcommunicationcommands.md",
+  "sourceDirName": "monoZJetNew",
+  "slug": "/monoZJetNew/hostcommunicationcommands",
+  "permalink": "/ja/docs/monoZJetNew/hostcommunicationcommands",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "MZコマンド",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "ホスト通信",
+    "permalink": "/ja/docs/monoZJetNew/hostcommunication"
+  },
+  "next": {
+    "title": "monoZ:Link",
+    "permalink": "/ja/docs/monoZLink/"
+  }
+}

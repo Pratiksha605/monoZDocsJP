@@ -1,0 +1,27 @@
+{
+  "id": "quickstartguide/pockit",
+  "title": "POC Kit - old remove",
+  "description": "remove",
+  "source": "@site/docs/quickstartguide/pockit.md",
+  "sourceDirName": "quickstartguide",
+  "slug": "/quickstartguide/pockit",
+  "permalink": "/ja/docs/quickstartguide/pockit",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "POC Kit - old remove",
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Quickstart Guide",
+    "permalink": "/ja/docs/quickstartguide/"
+  },
+  "next": {
+    "title": "monoZ:Jet POC Kit",
+    "permalink": "/ja/docs/quickstartguide/pockit_new"
+  }
+}

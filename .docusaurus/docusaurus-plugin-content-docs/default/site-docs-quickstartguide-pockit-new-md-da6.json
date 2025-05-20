@@ -1,0 +1,23 @@
+{
+  "id": "quickstartguide/pockit_new",
+  "title": "monoZ:Jet POC Kit",
+  "description": "Welcome to the Quickstart Guide for setting up your monoZ POC kit. In this guide we shall cover from POC kit unboxing and demonstrate how to send your first message from your monoZLink and vice versa. This is a quickstart guide and for detailed description & limitations of individual features/commands, check out the respective sections in monoZ docs site.",
+  "source": "@site/docs/quickstartguide/pockit_new.md",
+  "sourceDirName": "quickstartguide",
+  "slug": "/quickstartguide/pockit_new",
+  "permalink": "/ja/docs/quickstartguide/pockit_new",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "monoZ:Jet POC Kit",
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "POC Kit - old remove",
+    "permalink": "/ja/docs/quickstartguide/pockit"
+  }
+}

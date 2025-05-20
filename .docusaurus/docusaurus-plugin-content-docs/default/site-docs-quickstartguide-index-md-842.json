@@ -1,0 +1,27 @@
+{
+  "id": "quickstartguide/index",
+  "title": "Quickstart Guide",
+  "description": "",
+  "source": "@site/docs/quickstartguide/index.md",
+  "sourceDirName": "quickstartguide",
+  "slug": "/quickstartguide/",
+  "permalink": "/ja/docs/quickstartguide/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "title": "Quickstart Guide",
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "MZCS Application Commands",
+    "permalink": "/ja/docs/monoZConnect/hwintegration"
+  },
+  "next": {
+    "title": "POC Kit - old remove",
+    "permalink": "/ja/docs/quickstartguide/pockit"
+  }
+}

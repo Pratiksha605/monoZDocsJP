@@ -1,0 +1,27 @@
+{
+  "id": "monoZJetNew/hostcommunication",
+  "title": "ホスト通信",
+  "description": "ホストはmonoZ:JetとUSBもしくはUARTを介して通信することが出来ます。\\",
+  "source": "@site/docs/monoZJetNew/hostcommunication.md",
+  "sourceDirName": "monoZJetNew",
+  "slug": "/monoZJetNew/hostcommunication",
+  "permalink": "/ja/docs/monoZJetNew/hostcommunication",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "ホスト通信",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "ハードウェア仕様",
+    "permalink": "/ja/docs/monoZJetNew/hwintegrationguide"
+  },
+  "next": {
+    "title": "MZコマンド",
+    "permalink": "/ja/docs/monoZJetNew/hostcommunicationcommands"
+  }
+}

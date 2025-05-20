@@ -1,0 +1,27 @@
+{
+  "id": "monoZJetNew/hwintegrationguide",
+  "title": "ハードウェア仕様",
+  "description": "ピン配列",
+  "source": "@site/docs/monoZJetNew/hwintegrationguide.md",
+  "sourceDirName": "monoZJetNew",
+  "slug": "/monoZJetNew/hwintegrationguide",
+  "permalink": "/ja/docs/monoZJetNew/hwintegrationguide",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "ハードウェア仕様",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "概要",
+    "permalink": "/ja/docs/monoZJetNew/introduction"
+  },
+  "next": {
+    "title": "ホスト通信",
+    "permalink": "/ja/docs/monoZJetNew/hostcommunication"
+  }
+}

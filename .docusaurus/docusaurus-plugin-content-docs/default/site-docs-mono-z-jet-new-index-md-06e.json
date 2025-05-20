@@ -1,0 +1,27 @@
+{
+  "id": "monoZJetNew/index",
+  "title": "monoZ:Jet New",
+  "description": "<!--",
+  "source": "@site/docs/monoZJetNew/index.md",
+  "sourceDirName": "monoZJetNew",
+  "slug": "/monoZJetNew/",
+  "permalink": "/ja/docs/monoZJetNew/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "monoZ:Jet New",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "MZコマンド",
+    "permalink": "/ja/docs/monoZJet/hostcommunicationcommands"
+  },
+  "next": {
+    "title": "概要",
+    "permalink": "/ja/docs/monoZJetNew/introduction"
+  }
+}
