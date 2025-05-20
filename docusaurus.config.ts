@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'monoZ Docs',
-  tagline: 'Comprehensive guide to get started with monoZ',
+  tagline: 'monoZでIoTを始めよう',
   favicon: 'img/favicon.ico',
 
   url: 'https://docs.monoz.io/',
@@ -18,7 +18,7 @@ const config: Config = {
 
   // 🌐 Internationalization config
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'ja',
     locales: ['en', 'ja'],
     localeConfigs: {
       en: {
