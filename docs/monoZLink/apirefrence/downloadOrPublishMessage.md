@@ -36,6 +36,12 @@ sidebar_position: 9
                     <br/>monoZ:Jetが受け取れるメッセージの最大長は1024byteです。</div>
                 </div>
                 <div className="row mb-2">
+                    <div className="col col--4"><code>RetainLastMessage</code></div>
+                    <div className="col col--8"> Trueに設定すると、最後に送信したメッセージはmonoZ:Linkブローカーによって保存され、デバイスがサブスクライブしたときに送信されます。
+                    <br/>True: Retainを有効にしてメッセージを送信します。
+                    <br/>False: Retainを無効にしてメッセージを送信します。</div>
+                </div>
+                <div className="row mb-2">
                     <div className="col col--4"><code>Format</code></div>
                     <div className="col col--8">ダウンリンクメッセージの形式を指定します。
                     <br/>0:JSON形式
@@ -53,10 +59,10 @@ sidebar_position: 9
                 <small>Success <small className="text-gray">MessagePublished</small></small>
             </summary>
             ###### Response Body
-            <div className="response_details">
+            <!-- <div className="response_details">
                 <strong>Error</strong>&nbsp;&nbsp;  <small className="text-gray">boolean</small> 
                 <p>Indicates if there was an error.</p>
-            </div>
+            </div> -->
             <div className="response_details">
                 <strong>StatusCode</strong>&nbsp;&nbsp;  <small className="text-gray">integer</small> 
                 <p>HTTP status code of the response.</p>
@@ -112,6 +118,7 @@ sidebar_position: 9
                     "ICCID": "12345678",
                     "Topic": "/ABC",
                     "Message": "XYZ",
+                    "RetainLastMessage": true,
                     "QoS": 0,
                     "Format": 1
                 }'
@@ -119,7 +126,6 @@ sidebar_position: 9
             ##### Response
             ```jsx
             {
-                "Error": false,
                 "StatusCode": 200,
                 "Message": "MessagePublished"
             }

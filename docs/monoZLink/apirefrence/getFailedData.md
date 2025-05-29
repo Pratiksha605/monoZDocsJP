@@ -36,10 +36,10 @@ sidebar_position: 8
                 <small>Success <small className="text-gray">FetchSuccess</small></small>
             </summary>
             ###### Response Body
-            <div className="response_details">
+            <!-- <div className="response_details">
                 <strong>Error</strong>&nbsp;&nbsp;  <small className="text-gray">boolean</small> 
                 <p>Indicates if there was an error.</p>
-            </div>
+            </div> -->
             <div className="response_details">
                 <strong>Message</strong>&nbsp;&nbsp;  <small className="text-gray">string</small> 
                 <p>Message indicating the result of the operation.</p>
@@ -111,7 +111,6 @@ sidebar_position: 8
             ##### Response
             ```jsx
             {
-                "Error": false,
                 "Message": "FetchSuccess",
                 "StatusCode": 200,
                 "Data": [
