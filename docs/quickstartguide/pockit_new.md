@@ -33,7 +33,7 @@ monoZ:Jetクイックスタートガイドへようこそ。このガイドで�
     </div>
     </div>
 
-### Setting Up monoZ:Jet
+### Setting Up monoZ&#58;Jet
 1. monoZ:Jetは、USBモードまたはUARTモードでホストと通信することが出来ます。デフォルトではUSB モードが有効になっています。
 2. ホストがUARTモードでmonoZ:Jetと通信したい場合は、次のいずれかの方法でmonoZ:JetをUART モードに切り替えることができます。\
     i. 方法 1: PCBカッターを使用してmonoZ:JetボードのUSBコネクタ基板を切り取ります。一度切り離すとUSBモードで使用することは出来なくなりますのでご注意ください。
@@ -63,7 +63,7 @@ monoZ:Jetクイックスタートガイドへようこそ。このガイドで�
 
 
 
-### monoZ:Linkの初回設定
+### monoZ&#58;Linkの初回設定
 組織で初めてmonoZ:Linkを使用する場合は登録済みデバイスをグループに所属させる必要があります。\
 monoZ:Linkにログインして、転送設定の登録を行います。\
 転送設定ではプロトコルの変換と、転送先の設定を行います。\
@@ -151,7 +151,7 @@ monoZ:Linkの[グループ]で[Webhook]の転送設定を紐づけて新規グ�
 
     <CodeBlock language="javascript" title="Response"  className="response">
     {` <upon success>
-     MMZOK
+     MZOK
      +MZBAND: 0
     `}
     {`<upon failure>
@@ -177,7 +177,7 @@ monoZ:Linkの[グループ]で[Webhook]の転送設定を紐づけて新規グ�
 
     <CodeBlock language="javascript" title="Response"  className="response">
     {` <upon success>
-     MMZOK
+     MZOK
      +MZORGID: 0
     `}
     {`<upon failure>
@@ -195,7 +195,7 @@ monoZ:Linkの[グループ]で[Webhook]の転送設定を紐づけて新規グ�
 
     <CodeBlock language="javascript" title="Response"  className="response">
     {` <upon success>
-     MMZOK
+     MZOK
      +MZSTART: 0
     `}
     {`<upon failure>
@@ -211,7 +211,7 @@ monoZ:Linkの[グループ]で[Webhook]の転送設定を紐づけて新規グ�
 
     <CodeBlock language="javascript" title="Response"  className="response">
     {` <upon success>
-     MMZOK
+     MZOK
      +MZSEND: 0
     `}
     {`<upon failure>
@@ -239,7 +239,7 @@ monoZ:Linkの[グループ]で[Webhook]の転送設定を紐づけて新規グ�
 
     <CodeBlock language="javascript" title="Response"  className="response">
     {` <upon success>
-     MMZOK
+     MZOK
      +MZRECEIVE: 0
     `}
     {`<upon failure>
