@@ -36,12 +36,12 @@ export default function LocaleDropdownNavbarItem({
     } else if (lang === 'ja') {
       newPath = pathname.startsWith('/ja') ? pathname : `/ja${pathname}`;
     }
-    history.push(newPath);
+    //history.push(newPath);
     setIsOpen(false);
 
     // Append search and hash if available
-    const fullURL = `${newPath}${search}${hash}${queryString}`;
-    window.location.href = fullURL;
+    //const fullURL = `${newPath}${search}${hash}${queryString}`;
+    window.location.href = newPath;
   };
 
   const localeItems = locales.map((locale): LinkLikeNavbarItemProps => {
