@@ -42,7 +42,7 @@ MZNG`}
     </tr>
 </table>
 
-### mzcs_init &nbsp; monoZ:Connectの初期化
+### mzcs_init &nbsp; monoZ&#58;Connectの初期化
 monoZ:Connectの初期化と、設定確認を実行します。\
 設定が正しくない場合、エラーメッセージが表示されサービスが停止します。
 

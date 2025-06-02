@@ -249,7 +249,7 @@ monoZ:Jetに電源投入後、monoZ:Jetがコマンド入力を受け付けら�
 2. MZBANDとMZORGIDの設定コマンドはMZSTARTコマンドの前に実行してください。
 
 
-### MZVERSION: monoZ:Jet ファームウェアバージョン
+### MZVERSION&#58; monoZ&#58;Jet ファームウェアバージョン
 このコマンドでmonoZ:Jetの現在のファームウェアバージョンを確認することが出来ます。
 
 <CodeBlock language="javascript" title="Execution command">

@@ -65,6 +65,7 @@ sidebar_position: 6
         </div>
 <!-- </div>
     <div className="col col--5"> -->
+         <br/>
         <div className="sticky">
             ##### cURL
             ```jsx
